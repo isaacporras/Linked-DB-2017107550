@@ -1,4 +1,7 @@
 package paquete1;
+
+import javafx.scene.control.TreeItem;
+
 public class Documentos {
     private Object dato;
     private Nodo inicio;
@@ -9,7 +12,9 @@ public class Documentos {
         fin = null;
     }
 
-    public void ingresarDato(Objetos dato, String nombre) {
+    public void ingresarDato(Objetos dato, String nombre, TreeItem padre) {
+
+
         if (inicio == null) {
             inicio = new Nodo(null,null ,dato,null,null, null, nombre);
             inicio.setSiguiente(inicio);
