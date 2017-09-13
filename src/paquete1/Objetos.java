@@ -1,6 +1,7 @@
 package paquete1;
 
 
+import org.json.simple.JSONObject;
 
 public class Objetos {
     private Object dato;
@@ -11,13 +12,14 @@ public class Objetos {
         inicio =  null;
         fin = null;
     }
-    public void ingresarDato(Object dato) {
+    public void ingresarDato(JSONObject dato) {
         if (inicio == null) {
-            inicio = new Nodo(dato,null,null,null,null,null,null);
+            inicio = new Nodo(null,null,null,dato,null,null,null);
             fin = inicio;
+
         }
         else {
-            Nodo nuevo = new Nodo(dato,null,null,null, null,null, null);
+            Nodo nuevo = new Nodo(null,null,null,dato, null,null, null);
             fin.setSiguiente(nuevo);
             fin = nuevo;
         }
@@ -70,9 +72,12 @@ public class Objetos {
         Nodo actual = inicio;
 
         while(actual!= null){
-            System.out.println(actual.getDato());
+            System.out.println(actual.getDato_JSON());
             actual = actual.getSiguiente();
         }
+    }
+    public Nodo dar_inicio(){
+        return this.inicio;
 
     }
 }

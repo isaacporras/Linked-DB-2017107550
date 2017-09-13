@@ -68,6 +68,9 @@ public class Nodo {
     public void setDato_objetos(JSONObject objt){
         this.objeto_JSON = objt;
     }
+    public JSONObject getDato_JSON(){
+        return this.objeto_JSON;
+    }
 }
 
 
