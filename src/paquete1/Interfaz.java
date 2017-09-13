@@ -135,7 +135,8 @@ public class Interfaz extends Application{
                         MenuItemBuilder.create().text("Agregar Documento").onAction(new EventHandler<ActionEvent>() {
                             @Override
                             public void handle(ActionEvent arg0) {
-                                desplejarVentana_Documento_desde_el_arbol(item2,1);
+
+                                desplejarVentana_Documento_desde_el_arbol(arbol.getSelectionModel().selectedItemProperty().get(),1, arbol.getSelectionModel().selectedItemProperty().get());
 
 
 
@@ -146,7 +147,8 @@ public class Interfaz extends Application{
                         MenuItemBuilder.create().text("Agregar Objeto JSON").onAction(new EventHandler<ActionEvent>() {
                             @Override
                             public void handle(ActionEvent arg0) {
-                                desplejarVentana_Documento_desde_el_arbol(item2,2);
+                                System.out.println(arbol.getSelectionModel().selectedItemProperty().getValue().toString());
+                                desplejarVentana_Documento_desde_el_arbol(arbol.getSelectionModel().selectedItemProperty().get(),2, arbol.getSelectionModel().selectedItemProperty().get());
 
 
 
@@ -156,7 +158,7 @@ public class Interfaz extends Application{
                         MenuItemBuilder.create().text("Mostrar Objetos en Memoria").onAction(new EventHandler<ActionEvent>() {
                             @Override
                             public void handle(ActionEvent arg0) {
-                                mostrar_objetos_en_memoria(item2);
+                                mostrar_objetos_en_memoria(arbol.getSelectionModel().selectedItemProperty().get(), arbol.getSelectionModel().selectedItemProperty().get());
 //                                Tabla();
                             }
                         }).build(),
@@ -203,9 +205,9 @@ public class Interfaz extends Application{
         return item2;
     }
     public TreeItem<String> armarHijoArbol(TreeItem<String> padre , String nombre){
-        System.out.println("EL PADRE ES " + padre.getParent().getValue());
-        System.out.println(padre.toString());
-        System.out.println(padre.getParent().toString());
+//        System.out.println("EL PADRE ES " + padre.getParent().getValue());
+//        System.out.println(padre.toString());
+//        System.out.println(padre.getParent().toString());
 
 //        Documentos documentos1 = new Documentos();
 //        Objetos objetojson = new Objetos();
@@ -237,7 +239,9 @@ public class Interfaz extends Application{
 
 
 
-    public void desplejarVentana_Documento_desde_el_arbol(TreeItem<String> padre_seleccionado, int nivel){
+    public void desplejarVentana_Documento_desde_el_arbol(TreeItem<String> padre_seleccionado, int nivel ,TreeItem<String> item_seleccionado ){
+
+
 
         Stage ventana_documento = new Stage();
 
@@ -329,10 +333,10 @@ public class Interfaz extends Application{
             else{
                 if (nivel == 1){
                 armarHijoArbol(padre_seleccionado, text_atributo_nombre.getText());
-                meter_en_documentos(padre_seleccionado,"Hola", nivel);
+                meter_en_documentos(padre_seleccionado,text_atributo_nombre.getText(), nivel, item_seleccionado.getValue());
                 ventana_documento.close();}
-                if (nivel==2){
-                    meter_en_documentos(padre_seleccionado,text_atributo_nombre.getText(),nivel);
+                if (nivel == 2){
+                    meter_en_documentos(padre_seleccionado,text_atributo_nombre.getText(),nivel, item_seleccionado.getValue());
                     ventana_documento.close();
                 }
 
@@ -355,103 +359,7 @@ public class Interfaz extends Application{
         // Agarra los datos y crea el hijo //
 
     }
-//    public void desplegar_Ventana_Documento_desde_el_menu(){
-//
-//
-//            Stage ventana_documento = new Stage();
-//
-//            ventana_documento.initModality(Modality.APPLICATION_MODAL);
-//            ventana_documento.setTitle("Creando Documento...");
-//
-//
-//            // imagenes de la ventana //
-//
-//            File file3 = new File("/Users/IsaacPorras/Downloads/Progra1/src/paquete1/img/Nombre_documento_img.png");
-//            String localUrl1 = file3.toURI().toString();
-//            Image image_documento_palabra = new Image(localUrl1);
-//            ImageView imageView_documento_palabra = new ImageView(image_documento_palabra);
-//            imageView_documento_palabra.setLayoutX(20);
-//            imageView_documento_palabra.setLayoutY(20);
-//
-//            File file2 = new File("/Users/IsaacPorras/Downloads/Progra1/src/paquete1/img/Documento_img.jpg");
-//            String localUrl2 = file2.toURI().toString();
-//            Image image_documento = new Image(localUrl2);
-//            ImageView imageView_documento = new ImageView(image_documento);
-//            imageView_documento.setLayoutX(350);
-//            imageView_documento.setLayoutY(150);
-//
-//
-//            // Nombre del Documento  //
-//
-//            Label Nombre_Atributo = new Label("Nombre:");
-//            Nombre_Atributo.setLayoutX(20);
-//            Nombre_Atributo.setLayoutY(200);
-//            TextField text_atributo_nombre = new TextField();
-//            text_atributo_nombre.setLayoutX(130);
-//            text_atributo_nombre.setLayoutY(195);
-//            text_atributo_nombre.minWidth(60);
-//
-////        if (de_donde.equals("arbol")){
-////            Label Nombre_Atributo = new Label("Nombre:" +  "nombre del arbol" );
-////            Nombre_Atributo.setLayoutX(20);
-////            Nombre_Atributo.setLayoutY(200);
-////        }
-//
-//            //Tipo de atributo //
-//
-//
-//            Label Tipo_del_atributo = new Label("Tipo del Atributo:");
-//            Tipo_del_atributo.setLayoutX(15);
-//            Tipo_del_atributo.setLayoutY(250);
-//
-//            TextField text_atributo_tipo = new TextField();
-//
-//            text_atributo_tipo.setLayoutX(130);
-//            text_atributo_tipo.setLayoutY(245);
-//            text_atributo_tipo.minWidth(60);
-//
-//            // Tipo Especial //
-//
-//            Label tipo_especial_atributo = new Label("Tipo especial:");
-//            tipo_especial_atributo .setLayoutX(20);
-//            tipo_especial_atributo .setLayoutY(300);
-//
-//            TextField text_tipo_especial_atributo  = new TextField();
-//            text_tipo_especial_atributo.setLayoutX(130);
-//            text_tipo_especial_atributo.setLayoutY(295);
-//            text_tipo_especial_atributo.minWidth(60);
-//
-//            //Requerido o No requerido //
-//
-//            Label requerido = new Label("Requerido:");
-//            requerido.setLayoutX(20);
-//            requerido.setLayoutY(350);
-//            CheckBox caja_requerido_1 = new CheckBox();
-//            caja_requerido_1.setLayoutX(100);
-//            caja_requerido_1.setLayoutY(350);
-//
-//            Label no_requerido = new Label("Requerido:");
-//            no_requerido.setLayoutX(130);
-//            no_requerido.setLayoutY(350);
-//            CheckBox caja_no_requerido_1 = new CheckBox();
-//            caja_no_requerido_1.setLayoutX(210);
-//            caja_no_requerido_1.setLayoutY(350);
-//
-//            // boton para mandar datos //
-//            Button boton_documento = new Button("Listo!");
-//            boton_documento.setLayoutX(250);
-//            boton_documento.setLayoutY(400);
-////            boton_documento.setOnAction(e-> armarHijoArbol());
-//
-//
-//            Pane canvas3 = new Pane();
-//            canvas3.getChildren().addAll(text_atributo_nombre, Nombre_Atributo, text_atributo_tipo, Tipo_del_atributo,tipo_especial_atributo,text_tipo_especial_atributo);
-//            canvas3.getChildren().addAll(requerido,caja_requerido_1, caja_no_requerido_1,no_requerido,imageView_documento, imageView_documento_palabra);
-//            canvas3.getChildren().addAll(boton_documento);
-//            Scene scene2 = new Scene(canvas3, 600,500);
-//            ventana_documento.setScene(scene2);
-//            ventana_documento.showAndWait();
-//    }
+
     public void Tabla(){
         Stage ventanita = new Stage();
         ventanita.setTitle("Datos en memoria");
@@ -470,39 +378,40 @@ public class Interfaz extends Application{
         ventanita.showAndWait();
 
     }
-    public void meter_en_documentos(TreeItem<String> padre, Object Json, int nivel){
+    public void meter_en_documentos(TreeItem<String> padre, String nombre_doc , int nivel, String seleccionado){
 
-        Objetos objetojson = new Objetos();
+
 
         if(nivel == 2){
-            System.out.println("EL NOMBRE DEL PADRE ES: " + padre.getValue().toString());
-            System.out.println(listasStore.buscar_por_nombre(padre.getValue().toString()).getDato());
-            listasStore.buscar_por_nombre(padre.getValue().toString()).getDato_Store().ingresarDato(Json);
+            System.out.println("Mi padre es :" +listasStore.buscar_por_nombre(padre.getParent().getValue()).getNombre());
+            System.out.println(listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado).getDato_Documento());
+            JSONObject nuevo_objeto = new JSONObject();
 
-            System.out.println("--------------------");
-            System.out.println("--------------------");
-            System.out.println("--------------------");
-            System.out.println("--------------------");
-            System.out.println("Se inserto el documento dentro del store:" +listasStore.buscar_por_nombre(padre.getValue().toString())+", dentro del documento :" );
+            nuevo_objeto.put("Nombre: ",nombre_doc);
+
+
+            listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado).getDato_Documento().ingresarDato(nuevo_objeto);
+
             return;
 
         }
 
         if ( nivel == 1) {
+
+            Objetos objetojson = new Objetos();
+
+
             Documentos documentos1 = new Documentos();
-            objetojson.ingresarDato(Json);
-            documentos1.ingresarDato(objetojson);
+
+            JSONObject nuevo_objeto = new JSONObject();
+
+            nuevo_objeto.put("Nombre: ",nombre_doc);
+            objetojson.ingresarDato(nuevo_objeto);
+
+            documentos1.ingresarDato(objetojson,nombre_doc);
 
             listasStore.buscar_por_nombre(padre.getValue()).setDato_Store(documentos1);
-            System.out.println("La lista de JSON Stores es: ");
-            System.out.println("  ");
-            listasStore.imprimir();
-            System.out.println("La lista de Documentos es: ");
-            System.out.println("  ");
-            documentos1.imprimir();
-            System.out.println("La lista de Objetos JSON es: ");
-            System.out.println("  ");
-            objetojson.imprimirObjectos();
+
         }
 
 
@@ -584,12 +493,13 @@ public class Interfaz extends Application{
         window.showAndWait();
 
     }
-    public void mostrar_objetos_en_memoria(TreeItem<String> padre){
+    public void mostrar_objetos_en_memoria(TreeItem<String> padre, TreeItem<String> seleccionado){
 
         System.out.println("-------------------------------");
 
         System.out.println("LOS OBJETOS EN MEMORIA SON: ");
-        listasStore.buscar_por_nombre(padre.getValue().toString()).getDato_Store().imprimir();
+
+        listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado.getValue()).getDato_Documento().imprimirObjectos();
     }
 
 

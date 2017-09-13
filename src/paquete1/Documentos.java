@@ -9,16 +9,16 @@ public class Documentos {
         fin = null;
     }
 
-    public void ingresarDato(Object dato) {
+    public void ingresarDato(Objetos dato, String nombre) {
         if (inicio == null) {
-            inicio = new Nodo(dato ,null ,null, null, null);
+            inicio = new Nodo(null,null ,dato,null,null, null, nombre);
             inicio.setSiguiente(inicio);
             inicio.setAnterior(fin);
             fin = inicio;
 
         }
         else {
-            Nodo nuevo = new Nodo(dato,null,null,null, null);
+            Nodo nuevo = new Nodo(dato,null,null,null,null,null, null);
             nuevo.setSiguiente(inicio);
             nuevo.setAnterior(fin);
             fin.setSiguiente(nuevo);
@@ -82,7 +82,8 @@ public class Documentos {
             System.out.println("El dato no fue encontrado");
         }
     }
-    public Nodo buscar_por_nombre(String nombre) {
+
+    public Nodo buscar_por_nombre_Documentos(String nombre) {
         Nodo actual = inicio;
         while (actual != null) {
             if (actual.getNombre().equals(nombre)) {

@@ -21,18 +21,19 @@ public class Main {
 //        obj.put("Edad:",edad);
 //
 //        return obj;
-        Documentos doc = new Documentos();
-        doc.ingresarDato("Dato 1");
-        doc.ingresarDato("Dato 2");
-        doc.ingresarDato("Dato 3");
-        doc.ingresarDato("Dato 4");
-
-        System.out.println("------------------------");
-        System.out.println("------------------------");
-        System.out.println("------------------------");
-        Store store = new Store();
-        store.insertar(doc,"Documento");
-        store.buscar_por_nombre("Documento").getDato_Store().imprimir();
+//        Documentos doc = new Documentos();
+//        doc.ingresarDato("Dato 1");
+//        doc.ingresarDato("Dato 2");
+//        doc.ingresarDato("Dato 3");
+//        doc.ingresarDato("Dato 4");
+//
+//        System.out.println("------------------------");
+//        System.out.println("------------------------");
+//        System.out.println("------------------------");
+//
+//        Store store = new Store();
+//        store.insertar(doc,"Documento");
+//        store.buscar_por_nombre("Documento").getDato_Store().imprimir();
     }
 }
 

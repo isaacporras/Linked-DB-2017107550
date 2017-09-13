@@ -1,6 +1,6 @@
 package paquete1;
 
-import javax.xml.soap.Node;
+
 
 public class Store {
     private Nodo inicio;
@@ -16,11 +16,11 @@ public class Store {
     public void insertar(Documentos dato, String nombre) {
 
         if (inicio == null) {
-            inicio = new Nodo(null, dato, null, null, nombre);
+            inicio = new Nodo(null, dato,null,null, null, null, nombre);
             fin = inicio;
 
         } else {
-            Nodo nuevo = new Nodo(null, dato, fin, null, nombre);
+            Nodo nuevo = new Nodo(null, dato,null,null, fin, null, nombre);
             fin.setSiguiente(nuevo);
             nuevo.setAnterior(fin);
             fin = nuevo;

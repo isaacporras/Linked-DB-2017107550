@@ -13,11 +13,11 @@ public class Objetos {
     }
     public void ingresarDato(Object dato) {
         if (inicio == null) {
-            inicio = new Nodo(dato,null,null,null,null);
+            inicio = new Nodo(dato,null,null,null,null,null,null);
             fin = inicio;
         }
         else {
-            Nodo nuevo = new Nodo(dato,null,null,null, null);
+            Nodo nuevo = new Nodo(dato,null,null,null, null,null, null);
             fin.setSiguiente(nuevo);
             fin = nuevo;
         }
