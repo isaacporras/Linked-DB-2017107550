@@ -1,5 +1,6 @@
 package paquete1;
 
+import javafx.scene.layout.Pane;
 import org.json.simple.JSONObject;
 
 public class Nodo {
@@ -10,8 +11,9 @@ public class Nodo {
     private String nombre;
     private  Objetos dato_objetos;
     private JSONObject objeto_JSON;
+    private String Padre;
 
-    public Nodo(Object dat, Documentos dato_str, Objetos obj_documentos, JSONObject objeto_json, Nodo ant, Nodo sig, String nom) {
+    public Nodo(Object dat, Documentos dato_str, Objetos obj_documentos, JSONObject objeto_json, Nodo ant, Nodo sig, String nom ,String padre) {
         dato_Store = dato_str;
         nombre = nom;
         dato = dat;
@@ -19,6 +21,7 @@ public class Nodo {
         siguiente = sig;
         dato_objetos = obj_documentos;
         objeto_JSON = objeto_json;
+        Padre = padre;
     }
 
     public Nodo getSiguiente() {
@@ -44,6 +47,7 @@ public class Nodo {
     public Documentos getDato_Store() {
         return dato_Store;
     }
+
     public Objetos getDato_Documento() {
         return dato_objetos;
     }
@@ -70,6 +74,12 @@ public class Nodo {
     }
     public JSONObject getDato_JSON(){
         return this.objeto_JSON;
+    }
+    public String get_Padre_documento(){
+        return this.Padre;
+    }
+    public void set_padre_documento(String padre){
+        this.Padre = padre;
     }
 }
 

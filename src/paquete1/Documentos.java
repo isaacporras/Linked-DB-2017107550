@@ -12,18 +12,18 @@ public class Documentos {
         fin = null;
     }
 
-    public void ingresarDato(Objetos dato, String nombre, TreeItem padre) {
+    public void ingresarDato(Objetos dato, String nombre) {
 
 
         if (inicio == null) {
-            inicio = new Nodo(null,null ,dato,null,null, null, nombre);
+            inicio = new Nodo(null,null ,dato,null,null, null, nombre, null);
             inicio.setSiguiente(inicio);
             inicio.setAnterior(fin);
             fin = inicio;
 
         }
         else {
-            Nodo nuevo = new Nodo(dato,null,null,null,null,null, null);
+            Nodo nuevo = new Nodo(dato,null,null,null,null,null, null, null);
             nuevo.setSiguiente(inicio);
             nuevo.setAnterior(fin);
             fin.setSiguiente(nuevo);

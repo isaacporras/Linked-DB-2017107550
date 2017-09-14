@@ -9,6 +9,16 @@ public class Main {
     public int edad;
 
     public static void main(String[] args) {
+        Objetos objetos = new Objetos();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("Llave: ","Oscar");
+        objetos.ingresarDato(jsonObject);
+
+        System.out.println("La lista de objetos es:");
+        objetos.imprimirObjectos();
+        objetos.eliminarObjeto("Oscar");
+        System.out.println("La lista de objetos es:");
+        objetos.imprimirObjectos();
 //        Store stor = new Store();
 //        stor.insertar(null,"Isaac");
 //        stor.insertar(null,"oscar");
