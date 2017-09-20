@@ -209,7 +209,7 @@ public class Interfaz extends Application {
                         @Override
                         public void handle(ActionEvent arg0) {
 
-//                            mostrar_objetos_en_memoria(arbol.getSelectionModel().selectedItemProperty().get(), arbol.getSelectionModel().selectedItemProperty().get());
+                            mostrar_objetos_en_memoria(arbol.getSelectionModel().selectedItemProperty().get(), arbol.getSelectionModel().selectedItemProperty().get());
                             Tabla(arbol.getSelectionModel().selectedItemProperty().get());
                         }
                     }).build(),
@@ -354,7 +354,6 @@ public class Interfaz extends Application {
             } else {
                 if (nivel == 1) {
                     armarHijoArbol(padre_seleccionado, text_atributo_nombre.getText());
-
                     meter_en_documentos(padre_seleccionado, text_atributo_nombre.getText(), nivel, item_seleccionado.getValue(), menu_botton_selected, text_tipo_especial_atributo.getText());
                     menu_botton_selected = "";
                     ventana_documento.close();
@@ -501,62 +500,36 @@ public class Interfaz extends Application {
 
         if (nivel == 2){
 
-            System.out.println("El padre de nivel 2 es :"+ padre.getParent().getValue());
-
             JSONObject nuevo_objeto = new JSONObject();
 
             nuevo_objeto.put("Nombre: ",nombre_doc);
             nuevo_objeto.put("Llave: ",llave);
             nuevo_objeto.put("Tipo",tipo_del_atributo);
 
-            System.out.println("EL DATO DENTRO DE MI STORE ES : " + listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store());
-            System.out.println(listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado).getDato_Documento());
             listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado).getDato_Documento().ingresarDato(nuevo_objeto);
-
             return ;
 
         }
 
         if ( nivel == 1) {
 
-            System.out.println("El padre de nivel 1 es :" + padre.getValue());
-
             Objetos objetojson = new Objetos();
 
 
+            Documentos documentos1 = new Documentos();
+
             JSONObject nuevo_objeto = new JSONObject();
+
 
             nuevo_objeto.put("Nombre: ",nombre_doc);
             nuevo_objeto.put("Llave: ",llave);
             nuevo_objeto.put("Tipo",tipo_del_atributo);
 
             objetojson.ingresarDato(nuevo_objeto);
-            System.out.println("El dato de mi store este :"+listasStore.buscar_por_nombre(padre.getValue()).getDato_Store());
 
+            documentos1.ingresarDato(objetojson,nombre_doc);
 
-            if (listasStore.buscar_por_nombre(padre.getValue()).getDato_Store()!= null) {
-
-
-                System.out.println("SE INSERTO POR SEGUNDA VEZ");
-                listasStore.buscar_por_nombre(padre.getValue()).getDato_Store().ingresarDato(objetojson, nombre_doc);
-
-                listasStore.buscar_por_nombre(padre.getValue()).getDato_Store().imprimir();
-
-            }
-
-            if (listasStore.buscar_por_nombre(padre.getValue()).getDato_Store()==null) {
-
-                System.out.println("SE INSERTO POR PRIMERA VEZ");
-
-                Documentos documentos1 = new Documentos();
-
-                documentos1.ingresarDato(objetojson,nombre_doc);
-
-                listasStore.buscar_por_nombre(padre.getValue()).setDato_Store(documentos1);
-
-                listasStore.buscar_por_nombre(padre.getValue()).getDato_Store().imprimir();
-
-            }
+            listasStore.buscar_por_nombre(padre.getValue()).setDato_Store(documentos1);
 
         }
 
@@ -600,15 +573,15 @@ public class Interfaz extends Application {
         window.setScene(scene);
         window.showAndWait();
     }
-//    public void mostrar_objetos_en_memoria(TreeItem<String> padre, TreeItem<String> seleccionado){
-//
-//        System.out.println("-------------------------------");
-//
-//        System.out.println("LOS OBJETOS EN MEMORIA SON: ");
-//        System.out.println("  ");
-//
-//        listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado.getValue()).getDato_Documento().imprimirObjectos();
-//    }
+    public void mostrar_objetos_en_memoria(TreeItem<String> padre, TreeItem<String> seleccionado){
+
+        System.out.println("-------------------------------");
+
+        System.out.println("LOS OBJETOS EN MEMORIA SON: ");
+        System.out.println("  ");
+
+        listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado.getValue()).getDato_Documento().imprimirObjectos();
+    }
     public void eliminar_objeto_JSON_sin_llave(){
 
     }

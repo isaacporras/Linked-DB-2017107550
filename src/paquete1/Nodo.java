@@ -45,7 +45,7 @@ public class Nodo {
     }
 
     public Documentos getDato_Store() {
-        return this.dato_Store;
+        return dato_Store;
     }
 
     public Objetos getDato_Documento() {
@@ -82,4 +82,3 @@ public class Nodo {
         this.Padre = padre;
     }
 }
-

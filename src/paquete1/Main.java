@@ -9,19 +9,16 @@ public class Main {
     public int edad;
 
     public static void main(String[] args) {
-        Objetos obj = new Objetos();
-        Objetos obj1 = new Objetos();
-        Objetos obj2 = new Objetos();
-        Documentos doc = new Documentos();
-        doc.ingresarDato(obj,"objeto0");
-        doc.ingresarDato(obj1,"objeto1");
-        doc.ingresarDato(obj2,"objeto2");
+        Objetos objetos = new Objetos();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("Llave: ","Oscar");
+        objetos.ingresarDato(jsonObject);
 
-        System.out.println("EL OBJETO BUSCADO ES " + doc.buscar_por_nombre_Documentos("objeto1").getDato_Documento());
-//        Store stor = new Store();
-//        stor.insertar(doc,"documento1");
-//
-//        stor.buscar_documento(stor,"documento1");
+        System.out.println("La lista de objetos es:");
+        objetos.imprimirObjectos();
+        objetos.eliminarObjeto("Oscar");
+        System.out.println("La lista de objetos es:");
+        objetos.imprimirObjectos();
 //        Store stor = new Store();
 //        stor.insertar(null,"Isaac");
 //        stor.insertar(null,"oscar");
@@ -49,3 +46,4 @@ public class Main {
 //        store.buscar_por_nombre("Documento").getDato_Store().imprimir();
     }
 }
+
