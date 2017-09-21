@@ -23,7 +23,7 @@ public class Documentos {
 
         }
         else {
-            Nodo nuevo = new Nodo(dato,null,null,null,null,null, null, null);
+            Nodo nuevo = new Nodo(null,null,dato,null,null,null, nombre, null);
             nuevo.setSiguiente(inicio);
             nuevo.setAnterior(fin);
             fin.setSiguiente(nuevo);
@@ -33,9 +33,10 @@ public class Documentos {
         this.imprimir();
     }
     public void imprimir() {
+
         Nodo actual = inicio;
         do{
-            System.out.println(actual.getDato());
+            System.out.println(actual.getDato_Documento());
             actual = actual.getSiguiente();
         }while (actual != inicio);
 
@@ -89,11 +90,16 @@ public class Documentos {
     }
 
     public Nodo buscar_por_nombre_Documentos(String nombre) {
-        Nodo actual = inicio;
-        while (actual != null) {
+        Nodo actual = inicio.getSiguiente();
+
+        while (actual != inicio) {
+            if (inicio.getNombre().equals(nombre)){
+                return inicio;
+            }
             if (actual.getNombre().equals(nombre)) {
                 return actual;
-            } else {
+            }
+            else {
                 actual = actual.getSiguiente();
             }
         }

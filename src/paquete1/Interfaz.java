@@ -39,6 +39,9 @@ import javax.print.DocFlavor;
 import javax.swing.*;
 
 public class Interfaz extends Application {
+
+    RadioButton circulo_requerido;
+    RadioButton circulo_no_requerido;
     private File file;
     private ImageView imagenView;
     private Image imagen;
@@ -209,7 +212,7 @@ public class Interfaz extends Application {
                         @Override
                         public void handle(ActionEvent arg0) {
 
-                            mostrar_objetos_en_memoria(arbol.getSelectionModel().selectedItemProperty().get(), arbol.getSelectionModel().selectedItemProperty().get());
+//                            mostrar_objetos_en_memoria(arbol.getSelectionModel().selectedItemProperty().get(), arbol.getSelectionModel().selectedItemProperty().get());
                             Tabla(arbol.getSelectionModel().selectedItemProperty().get());
                         }
                     }).build(),
@@ -299,24 +302,63 @@ public class Interfaz extends Application {
         Tipo_del_atributo.setLayoutX(15);
         Tipo_del_atributo.setLayoutY(250);
 
-//        TextField text_atributo_tipo = new TextField();
+        // Tipo Especial : Primaria y foranea //
 
-//        text_atributo_tipo.setLayoutX(130);
-//        text_atributo_tipo.setLayoutY(245);
-//        text_atributo_tipo.minWidth(60);
+        //1.1.Primaria : Label
 
-        // Tipo Especial //
+        Label tipo_especial_primaria = new Label("Llave Primaria :");
+        tipo_especial_primaria.setLayoutX(20);
+        tipo_especial_primaria.setLayoutY(300);
+        //1.2.Primaria : TextField
 
-        Label tipo_especial_atributo = new Label("Tipo especial:");
-        tipo_especial_atributo.setLayoutX(20);
-        tipo_especial_atributo.setLayoutY(300);
+        TextField text_tipo_especial_primaria= new TextField();
+        text_tipo_especial_primaria.setLayoutX(130);
+        text_tipo_especial_primaria.setLayoutY(295);
+        text_tipo_especial_primaria.minWidth(60);
 
-        TextField text_tipo_especial_atributo = new TextField();
-        text_tipo_especial_atributo.setLayoutX(130);
-        text_tipo_especial_atributo.setLayoutY(295);
-        text_tipo_especial_atributo.minWidth(60);
+        //2.1.Foranea : Label
 
-        //Requerido o No requerido //
+        Label tipo_especial_foranea = new Label("Llave Foranea :");
+        tipo_especial_foranea.setLayoutX(20);
+        tipo_especial_foranea.setLayoutY(330);
+
+        //2.2.Foranea : Textfield
+
+        TextField text_tipo_especial_foranea = new TextField();
+        text_tipo_especial_foranea.setLayoutX(130);
+        text_tipo_especial_foranea.setLayoutY(330);
+        text_tipo_especial_foranea.minWidth(60);
+
+
+        // BOTONES DE REQUERIDO O NO REQUERIDO //
+
+
+        // 1. Requerido
+
+        Label label_circulo_requerido = new Label("Requerido ");
+        label_circulo_requerido.setLayoutX(10);
+        label_circulo_requerido.setLayoutY(400);
+
+        circulo_requerido = new RadioButton();
+        circulo_requerido.setLayoutX(100);
+        circulo_requerido.setLayoutY(400);
+        circulo_requerido.setOnAction(e->{
+            circulo_no_requerido.setSelected(false);
+        });
+
+        // 2. No requerido
+
+        Label label_circulo_no_requerido = new Label("Requerido ");
+        label_circulo_no_requerido.setLayoutX(10);
+        label_circulo_no_requerido.setLayoutY(430);
+
+        circulo_no_requerido = new RadioButton();
+        circulo_no_requerido.setLayoutX(100);
+        circulo_no_requerido.setLayoutY(430);
+        circulo_no_requerido.setOnAction(e->{
+            circulo_requerido.setSelected(false);
+        });
+
 
         MenuItem menuItemint = new MenuItem("Int");
         menuItemint.setOnAction(e-> {
@@ -348,18 +390,19 @@ public class Interfaz extends Application {
         boton_documento.setLayoutY(400);
 
         boton_documento.setOnAction(e -> {
-            if (text_atributo_nombre.getText().equals("") || menu_botton_selected.equals("") || tipo_especial_atributo.getText().equals("")) {
+            if (text_atributo_nombre.getText().equals("") || menu_botton_selected.equals("") || tipo_especial_primaria.getText().equals("")) {
                 display();
 
             } else {
                 if (nivel == 1) {
                     armarHijoArbol(padre_seleccionado, text_atributo_nombre.getText());
-                    meter_en_documentos(padre_seleccionado, text_atributo_nombre.getText(), nivel, item_seleccionado.getValue(), menu_botton_selected, text_tipo_especial_atributo.getText());
+
+                    meter_en_documentos(padre_seleccionado, text_atributo_nombre.getText(), nivel, item_seleccionado.getValue(), menu_botton_selected, text_tipo_especial_primaria.getText());
                     menu_botton_selected = "";
                     ventana_documento.close();
                 }
                 if (nivel == 2) {
-                    meter_en_documentos(padre_seleccionado, text_atributo_nombre.getText(), nivel, item_seleccionado.getValue(), menu_botton_selected, text_tipo_especial_atributo.getText());
+                    meter_en_documentos(padre_seleccionado, text_atributo_nombre.getText(), nivel, item_seleccionado.getValue(), menu_botton_selected, text_tipo_especial_primaria.getText());
                     menu_botton_selected = "";
                     ventana_documento.close();
                 }
@@ -372,9 +415,9 @@ public class Interfaz extends Application {
 
 
         Pane canvas3 = new Pane();
-        canvas3.getChildren().addAll(text_atributo_nombre, Nombre_Atributo, Tipo_del_atributo, tipo_especial_atributo, text_tipo_especial_atributo);
-        canvas3.getChildren().addAll( imageView_documento, imageView_documento_palabra,menuButton);
-        canvas3.getChildren().addAll(boton_documento);
+        canvas3.getChildren().addAll(text_atributo_nombre, Nombre_Atributo, Tipo_del_atributo, tipo_especial_primaria, text_tipo_especial_primaria);
+        canvas3.getChildren().addAll( imageView_documento, imageView_documento_palabra,menuButton, tipo_especial_foranea, text_tipo_especial_foranea);
+        canvas3.getChildren().addAll(boton_documento, circulo_requerido, circulo_no_requerido, label_circulo_requerido, label_circulo_no_requerido);
         Scene scene2 = new Scene(canvas3, 600, 500);
         ventana_documento.setScene(scene2);
         ventana_documento.showAndWait();
@@ -500,36 +543,61 @@ public class Interfaz extends Application {
 
         if (nivel == 2){
 
+            System.out.println("El padre de nivel 2 es :"+ padre.getParent().getValue());
+
             JSONObject nuevo_objeto = new JSONObject();
 
             nuevo_objeto.put("Nombre: ",nombre_doc);
             nuevo_objeto.put("Llave: ",llave);
             nuevo_objeto.put("Tipo",tipo_del_atributo);
 
+            System.out.println("EL DATO DENTRO DE MI STORE ES : " + listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store());
             listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado).getDato_Documento().ingresarDato(nuevo_objeto);
+
             return ;
 
         }
 
         if ( nivel == 1) {
 
+            System.out.println("El padre de nivel 1 es :" + padre.getValue());
+
             Objetos objetojson = new Objetos();
 
 
-            Documentos documentos1 = new Documentos();
-
             JSONObject nuevo_objeto = new JSONObject();
-
 
             nuevo_objeto.put("Nombre: ",nombre_doc);
             nuevo_objeto.put("Llave: ",llave);
             nuevo_objeto.put("Tipo",tipo_del_atributo);
 
             objetojson.ingresarDato(nuevo_objeto);
+            System.out.println("El dato de mi store este :"+listasStore.buscar_por_nombre(padre.getValue()).getDato_Store());
 
-            documentos1.ingresarDato(objetojson,nombre_doc);
 
-            listasStore.buscar_por_nombre(padre.getValue()).setDato_Store(documentos1);
+            if (listasStore.buscar_por_nombre(padre.getValue()).getDato_Store()!= null) {
+
+
+                System.out.println("SE INSERTO POR SEGUNDA VEZ");
+                listasStore.buscar_por_nombre(padre.getValue()).getDato_Store().ingresarDato(objetojson, nombre_doc);
+
+                listasStore.buscar_por_nombre(padre.getValue()).getDato_Store().imprimir();
+
+            }
+
+            if (listasStore.buscar_por_nombre(padre.getValue()).getDato_Store()==null) {
+
+                System.out.println("SE INSERTO POR PRIMERA VEZ");
+
+                Documentos documentos1 = new Documentos();
+
+                documentos1.ingresarDato(objetojson,nombre_doc);
+
+                listasStore.buscar_por_nombre(padre.getValue()).setDato_Store(documentos1);
+
+                listasStore.buscar_por_nombre(padre.getValue()).getDato_Store().imprimir();
+
+            }
 
         }
 
@@ -573,15 +641,15 @@ public class Interfaz extends Application {
         window.setScene(scene);
         window.showAndWait();
     }
-    public void mostrar_objetos_en_memoria(TreeItem<String> padre, TreeItem<String> seleccionado){
-
-        System.out.println("-------------------------------");
-
-        System.out.println("LOS OBJETOS EN MEMORIA SON: ");
-        System.out.println("  ");
-
-        listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado.getValue()).getDato_Documento().imprimirObjectos();
-    }
+    //    public void mostrar_objetos_en_memoria(TreeItem<String> padre, TreeItem<String> seleccionado){
+//
+//        System.out.println("-------------------------------");
+//
+//        System.out.println("LOS OBJETOS EN MEMORIA SON: ");
+//        System.out.println("  ");
+//
+//        listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado.getValue()).getDato_Documento().imprimirObjectos();
+//    }
     public void eliminar_objeto_JSON_sin_llave(){
 
     }

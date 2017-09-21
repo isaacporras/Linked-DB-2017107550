@@ -45,7 +45,7 @@ public class Nodo {
     }
 
     public Documentos getDato_Store() {
-        return dato_Store;
+        return this.dato_Store;
     }
 
     public Objetos getDato_Documento() {
