@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eaa0ce73-e0bd-4ded-8ed8-56269d3117a4" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Progra1/paquete1/Main.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Progra1/paquete1/Documentos.class" afterPath="$PROJECT_DIR$/out/production/Progra1/paquete1/Documentos.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz$3.class" afterPath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz$3.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz.class" afterPath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/paquete1/Documentos.java" afterPath="$PROJECT_DIR$/src/paquete1/Documentos.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/paquete1/Interfaz.java" afterPath="$PROJECT_DIR$/src/paquete1/Interfaz.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/paquete1/Main.java" afterPath="$PROJECT_DIR$/src/paquete1/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/paquete1/Nodo.java" afterPath="$PROJECT_DIR$/src/paquete1/Nodo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/paquete1/Store.java" afterPath="$PROJECT_DIR$/src/paquete1/Store.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -437,7 +431,14 @@
       <option name="project" value="LOCAL" />
       <updated>1505886597901</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Proyecto con interfaz de documento">
+      <created>1506005289646</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1506005289646</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -509,7 +510,8 @@
     <MESSAGE value="Linked List con los dos metodos de eliminar" />
     <MESSAGE value="Correccion de bug gg :3 *feliz*" />
     <MESSAGE value="Proyecto con javaDoc" />
-    <option name="LAST_COMMIT_MESSAGE" value="Proyecto con javaDoc" />
+    <MESSAGE value="Proyecto con interfaz de documento" />
+    <option name="LAST_COMMIT_MESSAGE" value="Proyecto con interfaz de documento" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
