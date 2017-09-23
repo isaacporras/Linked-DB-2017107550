@@ -12,8 +12,12 @@ public class Nodo {
     private  Objetos dato_objetos;
     private JSONObject objeto_JSON;
     private String Padre;
+    private String nombre_atributo;
+    private String tipo_atributo;
+    private String llave_primaria;
+    private String llave_foranea;
 
-    public Nodo(Object dat, Documentos dato_str, Objetos obj_documentos, JSONObject objeto_json, Nodo ant, Nodo sig, String nom ,String padre) {
+    public Nodo(Object dat, Documentos dato_str, Objetos obj_documentos, JSONObject objeto_json, Nodo ant, Nodo sig, String nom ,String padre, String nombre_atr , String tipo_atr , String llave_prim , String llave_fora) {
         dato_Store = dato_str;
         nombre = nom;
         dato = dat;
@@ -22,6 +26,11 @@ public class Nodo {
         dato_objetos = obj_documentos;
         objeto_JSON = objeto_json;
         Padre = padre;
+        nombre_atributo = nombre_atr;
+        tipo_atributo = tipo_atr;
+        llave_primaria = llave_prim;
+        llave_foranea = llave_fora;
+
     }
 
     public Nodo getSiguiente() {
@@ -80,5 +89,27 @@ public class Nodo {
     }
     public void set_padre_documento(String padre){
         this.Padre = padre;
+    }
+
+    public String getNombre_atributo() {
+        return nombre_atributo;
+    }
+
+    public void setNombre_atributo(String nombre_atributo) {
+        this.nombre_atributo = nombre_atributo;
+    }
+
+    public String getLlave_foranea() {
+        return llave_foranea;
+    }
+
+    public void setLlave_foranea(String llave_foranea) {
+        this.llave_foranea = llave_foranea;
+    }
+    public String getTipo_atributo(){
+        return this.tipo_atributo;
+    }
+    public String getLlave_primaria(){
+        return this.llave_primaria;
     }
 }

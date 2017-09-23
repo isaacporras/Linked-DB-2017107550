@@ -34,12 +34,15 @@ import sun.swing.SwingUtilities2;
 import javafx.collections.FXCollections;
 import javafx.scene.Group;
 import javafx.scene.text.Font;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 
 import javax.print.DocFlavor;
 import javax.swing.*;
 
 public class Interfaz extends Application {
-
     RadioButton circulo_requerido;
     RadioButton circulo_no_requerido;
     private File file;
@@ -119,7 +122,7 @@ public class Interfaz extends Application {
 
     // CREA UN ROOT/JSON STORE O CREA UN ELEMENTO NO ROOT //
 
-    public static void display(){
+    public static void display() {
 
         Stage window = new Stage();
 
@@ -133,10 +136,10 @@ public class Interfaz extends Application {
         Button deleteButton = new Button("OK");
         deleteButton.setLayoutX(90);
         deleteButton.setLayoutY(20);
-        deleteButton.setOnAction(e-> window.close());
+        deleteButton.setOnAction(e -> window.close());
 
         Pane layout = new Pane();
-        layout.getChildren().addAll(label,deleteButton);
+        layout.getChildren().addAll(label, deleteButton);
 
 
         Scene scene = new Scene(layout);
@@ -202,7 +205,7 @@ public class Interfaz extends Application {
                         @Override
                         public void handle(ActionEvent arg0) {
                             System.out.println(arbol.getSelectionModel().selectedItemProperty().getValue().toString());
-                            desplejarVentana_Documento_desde_el_arbol(arbol.getSelectionModel().selectedItemProperty().get(), 2, arbol.getSelectionModel().selectedItemProperty().get());
+                            Ventana_crear_JSON_Object(arbol.getSelectionModel().selectedItemProperty().get());
 
 
                         }
@@ -397,12 +400,12 @@ public class Interfaz extends Application {
                 if (nivel == 1) {
                     armarHijoArbol(padre_seleccionado, text_atributo_nombre.getText());
 
-                    meter_en_documentos(padre_seleccionado, text_atributo_nombre.getText(), nivel, item_seleccionado.getValue(), menu_botton_selected, text_tipo_especial_primaria.getText());
+                    meter_en_documentos(padre_seleccionado, text_atributo_nombre.getText(), nivel, item_seleccionado.getValue(), menu_botton_selected, text_tipo_especial_primaria.getText(),text_tipo_especial_foranea.getText());
                     menu_botton_selected = "";
                     ventana_documento.close();
                 }
                 if (nivel == 2) {
-                    meter_en_documentos(padre_seleccionado, text_atributo_nombre.getText(), nivel, item_seleccionado.getValue(), menu_botton_selected, text_tipo_especial_primaria.getText());
+                    meter_en_documentos(padre_seleccionado, text_atributo_nombre.getText(), nivel, item_seleccionado.getValue(), menu_botton_selected, text_tipo_especial_primaria.getText(), text_tipo_especial_foranea.getText());
                     menu_botton_selected = "";
                     ventana_documento.close();
                 }
@@ -425,6 +428,8 @@ public class Interfaz extends Application {
         // Agarra los datos y crea el hijo //
 
     }
+
+
     public void meter_valores_en_observable_list(Nodo actual_1, ObservableList<Tabla_datos> data) {
 
         while (actual_1 != null) {
@@ -473,7 +478,7 @@ public class Interfaz extends Application {
         LlaveCOL.setMinWidth(200);
         LlaveCOL.setCellValueFactory(
                 new PropertyValueFactory<Tabla_datos, String>("Tipo"));
-        meter_valores_en_observable_list(actual,data);
+        meter_valores_en_observable_list(actual, data);
         table.setItems(data);
 
         table.getColumns().addAll(NameCol, TipoCOL, LlaveCOL);
@@ -488,7 +493,8 @@ public class Interfaz extends Application {
         stage.setScene(scene);
         stage.show();
     }
-    public  void deplejarVentanaNombreJSON() {
+
+    public void deplejarVentanaNombreJSON() {
 
 
         Stage ventanita = new Stage();
@@ -518,9 +524,8 @@ public class Interfaz extends Application {
 
         boton1.setOnAction(e -> {
             if (nombre.getText().equals("")) {
-                return ;
-            }
-            else {
+                return;
+            } else {
                 crearElItem(nombre.getText());
                 ventanita.close();
             }
@@ -528,37 +533,39 @@ public class Interfaz extends Application {
 
 
         canvas2 = new Pane();
-        canvas2.getChildren().addAll(nombre,texto,imageView,boton1);
+        canvas2.getChildren().addAll(nombre, texto, imageView, boton1);
 
 
-        Scene scene = new Scene(canvas2, 500,200);
+        Scene scene = new Scene(canvas2, 500, 200);
         ventanita.setScene(scene);
         ventanita.showAndWait();
 
     }
 
-    public void meter_en_documentos(TreeItem<String> padre, String nombre_doc , int nivel, String seleccionado,String tipo_del_atributo, String llave){
+    public void meter_en_documentos(TreeItem<String> padre, String nombre_doc, int nivel, String seleccionado, String tipo_del_atributo, String llave_primaria, String llave_foranea) {
 
 
+        if (nivel == 2) {
 
-        if (nivel == 2){
-
-            System.out.println("El padre de nivel 2 es :"+ padre.getParent().getValue());
+            System.out.println("El padre de nivel 2 es :" + padre.getParent().getValue());
 
             JSONObject nuevo_objeto = new JSONObject();
 
-            nuevo_objeto.put("Nombre: ",nombre_doc);
-            nuevo_objeto.put("Llave: ",llave);
-            nuevo_objeto.put("Tipo",tipo_del_atributo);
+            nuevo_objeto.put("Nombre: ", nombre_doc);
+            nuevo_objeto.put("Llave: ", llave_primaria);
+            nuevo_objeto.put("Tipo", tipo_del_atributo);
 
             System.out.println("EL DATO DENTRO DE MI STORE ES : " + listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store());
+            System.out.println(listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado).getDato_Documento());
             listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado).getDato_Documento().ingresarDato(nuevo_objeto);
 
-            return ;
+            return;
 
         }
 
-        if ( nivel == 1) {
+        if (nivel == 1) {
+
+
 
             System.out.println("El padre de nivel 1 es :" + padre.getValue());
 
@@ -567,31 +574,31 @@ public class Interfaz extends Application {
 
             JSONObject nuevo_objeto = new JSONObject();
 
-            nuevo_objeto.put("Nombre: ",nombre_doc);
-            nuevo_objeto.put("Llave: ",llave);
-            nuevo_objeto.put("Tipo",tipo_del_atributo);
+            nuevo_objeto.put("Nombre: ", nombre_doc);
+            nuevo_objeto.put("Llave: ", llave_primaria);
+            nuevo_objeto.put("Tipo", tipo_del_atributo);
 
             objetojson.ingresarDato(nuevo_objeto);
-            System.out.println("El dato de mi store este :"+listasStore.buscar_por_nombre(padre.getValue()).getDato_Store());
+            System.out.println("El dato de mi store este :" + listasStore.buscar_por_nombre(padre.getValue()).getDato_Store());
 
 
-            if (listasStore.buscar_por_nombre(padre.getValue()).getDato_Store()!= null) {
+            if (listasStore.buscar_por_nombre(padre.getValue()).getDato_Store() != null) {
 
 
                 System.out.println("SE INSERTO POR SEGUNDA VEZ");
-                listasStore.buscar_por_nombre(padre.getValue()).getDato_Store().ingresarDato(objetojson, nombre_doc);
+                listasStore.buscar_por_nombre(padre.getValue()).getDato_Store().ingresarDato(objetojson, nombre_doc,nombre_doc,tipo_del_atributo,llave_primaria,llave_foranea);
 
                 listasStore.buscar_por_nombre(padre.getValue()).getDato_Store().imprimir();
 
             }
 
-            if (listasStore.buscar_por_nombre(padre.getValue()).getDato_Store()==null) {
+            if (listasStore.buscar_por_nombre(padre.getValue()).getDato_Store() == null) {
 
                 System.out.println("SE INSERTO POR PRIMERA VEZ");
 
                 Documentos documentos1 = new Documentos();
 
-                documentos1.ingresarDato(objetojson,nombre_doc);
+                documentos1.ingresarDato(objetojson, nombre_doc, nombre_doc,tipo_del_atributo,llave_primaria,llave_foranea);
 
                 listasStore.buscar_por_nombre(padre.getValue()).setDato_Store(documentos1);
 
@@ -602,13 +609,9 @@ public class Interfaz extends Application {
         }
 
 
-
-
-
-
     }
 
-    public void eliminar_json_por_llave(){
+    public void eliminar_json_por_llave() {
 
         Stage window = new Stage();
 
@@ -629,18 +632,20 @@ public class Interfaz extends Application {
         llave.setLayoutY(120);
         llave.minWidth(70);
 
-        boton.setOnAction(e-> {
+        boton.setOnAction(e -> {
             listasStore.buscar_por_nombre(arbol.getSelectionModel().selectedItemProperty().get().getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(arbol.getSelectionModel().selectedItemProperty().get().getValue()).getDato_Documento().eliminarObjeto(llave.getText());
-            window.close();});
+            window.close();
+        });
 
         Pane layout = new Pane();
-        layout.getChildren().addAll(llave,label,boton);
+        layout.getChildren().addAll(llave, label, boton);
 
 
         Scene scene = new Scene(layout);
         window.setScene(scene);
         window.showAndWait();
     }
+
     //    public void mostrar_objetos_en_memoria(TreeItem<String> padre, TreeItem<String> seleccionado){
 //
 //        System.out.println("-------------------------------");
@@ -650,7 +655,98 @@ public class Interfaz extends Application {
 //
 //        listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado.getValue()).getDato_Documento().imprimirObjectos();
 //    }
-    public void eliminar_objeto_JSON_sin_llave(){
+    public void Ventana_crear_JSON_Object(TreeItem<String> seleccionado){
+
+
+        String seleccionado2 = seleccionado.getValue();
+        String nombre_atributo = listasStore.buscar_por_nombre(seleccionado.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado2).getNombre_atributo();
+        String tipo = listasStore.buscar_por_nombre(seleccionado.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado2).getTipo_atributo();
+        String llave_primaria = listasStore.buscar_por_nombre(seleccionado.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado2).getLlave_primaria();
+        String llave_foranea = listasStore.buscar_por_nombre(seleccionado.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado2).getLlave_foranea();
+        Stage ventana_json_object = new Stage();
+
+        ventana_json_object.initModality(Modality.APPLICATION_MODAL);
+        ventana_json_object.setTitle("Creando JSON object...");
+
+
+        // Nombre del Documento  //
+
+        Text Nombre_Atributo_JSON = new Text(nombre_atributo);
+        Nombre_Atributo_JSON.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20) );
+        Nombre_Atributo_JSON.setLayoutX(20);
+        Nombre_Atributo_JSON.setLayoutY(20);
+
+
+
+        //Tipo de atributo //
+
+
+//        Label Tipo_del_atributo_JSON = new Label(tipo + " : ");
+//        Tipo_del_atributo_JSON.setLayoutX(15);
+//        Tipo_del_atributo_JSON.setLayoutY(250);
+
+        // Tipo Especial : Primaria y foranea //
+
+        //1.1.Primaria : Label
+
+        Label tipo_especial_primaria_JSON = new Label(llave_primaria + " : ");
+        tipo_especial_primaria_JSON.setLayoutX(20);
+        tipo_especial_primaria_JSON.setLayoutY(40);
+        //1.2.Primaria : TextField
+
+        TextField text_tipo_especial_primaria_JSON= new TextField();
+        text_tipo_especial_primaria_JSON.setLayoutX(130);
+        text_tipo_especial_primaria_JSON.setLayoutY(40);
+        text_tipo_especial_primaria_JSON.minWidth(60);
+
+        //2.1.Foranea : Label
+
+        Label tipo_especial_foranea_JSON = new Label(llave_foranea +" : ");
+        tipo_especial_foranea_JSON.setLayoutX(20);
+        tipo_especial_foranea_JSON.setLayoutY(70);
+
+        //2.2.Foranea : Textfield
+
+        TextField text_tipo_especial_foranea_JSON = new TextField();
+        text_tipo_especial_foranea_JSON.setLayoutX(130);
+        text_tipo_especial_foranea_JSON.setLayoutY(70);
+        text_tipo_especial_foranea_JSON.minWidth(60);
+
+
+        Button boton_json_object = new Button("Listo!");
+        boton_json_object.setLayoutX(240);
+        boton_json_object.setLayoutY(110);
+        boton_json_object.setOnAction(e->{
+            System.out.println("Lo escrito en la primaria es : "+text_tipo_especial_primaria_JSON.getText() + " y en la foranea es :"+text_tipo_especial_foranea_JSON.getText());
+            if (text_tipo_especial_primaria_JSON.getText().equals("")  || text_tipo_especial_foranea_JSON.getText().equals("")){
+                System.out.println("NO SE ESCRIBIO NADA");
+                display();
+            }
+            if(!text_tipo_especial_primaria_JSON.getText().equals("")  && !text_tipo_especial_foranea_JSON.getText().equals("")){
+                System.out.println("SI SE ESCRIBIO ALGO");
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("Nombre: ","");
+                jsonObject.put("Llave: ", text_tipo_especial_primaria_JSON.getText());
+                jsonObject.put("Tipo",text_tipo_especial_foranea_JSON.getText());
+                System.out.println("EL OBJETO JSON QUE SE EATA INGRESANDO ES : " + jsonObject);
+                System.out.println("estan en el store : " + listasStore.buscar_por_nombre(seleccionado.getParent().getValue()));
+                System.out.println("La lista de documentos es: "+listasStore.buscar_por_nombre(seleccionado.getParent().getValue()).getDato_Store());
+                System.out.println("Mi lista de objetos es : "+ listasStore.buscar_por_nombre(seleccionado.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado2));
+
+                listasStore.buscar_por_nombre(seleccionado.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado2).getDato_Documento().ingresarDato(jsonObject);
+                listasStore.buscar_por_nombre(seleccionado.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado2).getDato_Documento().imprimirObjectos();
+                ventana_json_object.close();
+            }
+        });
+
+        Pane canvas_json = new Pane();
+        canvas_json.getChildren().addAll(Nombre_Atributo_JSON, text_tipo_especial_primaria_JSON, text_tipo_especial_foranea_JSON, boton_json_object,tipo_especial_foranea_JSON, tipo_especial_primaria_JSON);
+        Scene scene2 = new Scene(canvas_json, 320, 150);
+        ventana_json_object.setScene(scene2);
+        ventana_json_object.showAndWait();
+
+
+
 
     }
 

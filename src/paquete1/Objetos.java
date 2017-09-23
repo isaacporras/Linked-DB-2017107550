@@ -14,12 +14,12 @@ public class Objetos {
     }
     public void ingresarDato(JSONObject dato) {
         if (inicio == null) {
-            inicio = new Nodo(null,null,null,dato,null,null,null, null);
+            inicio = new Nodo(null,null,null,dato,null,null,null, null, null, null, null ,null);
             fin = inicio;
 
         }
         else {
-            Nodo nuevo = new Nodo(null,null,null,dato, null,null, null, null);
+            Nodo nuevo = new Nodo(null,null,null,dato, null,null, null, null, null, null, null ,null);
             fin.setSiguiente(nuevo);
             fin = nuevo;
         }

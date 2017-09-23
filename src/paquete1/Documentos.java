@@ -12,18 +12,18 @@ public class Documentos {
         fin = null;
     }
 
-    public void ingresarDato(Objetos dato, String nombre) {
+    public void ingresarDato(Objetos dato, String nombre , String nombre_atr , String tipo_atr , String llave_prim , String llave_fora) {
 
 
         if (inicio == null) {
-            inicio = new Nodo(null,null ,dato,null,null, null, nombre, null);
+            inicio = new Nodo(null,null ,dato,null,null, null, nombre, null, nombre_atr, tipo_atr, llave_prim ,llave_fora);
             inicio.setSiguiente(inicio);
             inicio.setAnterior(fin);
             fin = inicio;
 
         }
         else {
-            Nodo nuevo = new Nodo(null,null,dato,null,null,null, nombre, null);
+            Nodo nuevo = new Nodo(null,null,dato,null,null,null, nombre, null,nombre_atr, tipo_atr, llave_prim ,llave_fora);
             nuevo.setSiguiente(inicio);
             nuevo.setAnterior(fin);
             fin.setSiguiente(nuevo);
