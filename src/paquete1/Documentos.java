@@ -1,11 +1,15 @@
 package paquete1;
 
 import javafx.scene.control.TreeItem;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 public class Documentos {
     private Object dato;
     private Nodo inicio;
     private Nodo fin;
+    private String nombre_lista;
+    private String llave_1;
+    private String llave_2;
 
     public Documentos() {
         inicio = null;
@@ -20,6 +24,10 @@ public class Documentos {
             inicio.setSiguiente(inicio);
             inicio.setAnterior(fin);
             fin = inicio;
+            nombre_lista = nombre_atr;
+            llave_1 = llave_prim;
+            llave_2 = llave_fora;
+
 
         }
         else {
@@ -91,6 +99,12 @@ public class Documentos {
 
     public Nodo buscar_por_nombre_Documentos(String nombre) {
         Nodo actual = inicio.getSiguiente();
+        System.out.println();
+        System.out.println("el nombre del inicio es :"+inicio.getNombre());
+
+        if (inicio.getNombre().equals(nombre)){
+            return inicio;
+        }
 
         while (actual != inicio) {
             if (inicio.getNombre().equals(nombre)){
@@ -104,5 +118,17 @@ public class Documentos {
             }
         }
         return null;
+    }
+
+    public String getNombre_lista() {
+        return nombre_lista;
+    }
+
+    public String getLlave_1() {
+        return llave_1;
+    }
+
+    public String getLlave_2() {
+        return llave_2;
     }
 }

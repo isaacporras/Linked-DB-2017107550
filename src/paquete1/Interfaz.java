@@ -163,14 +163,6 @@ public class Interfaz extends Application {
         padre.getChildren().add(item3);
 
 
-//        listasStore.buscar_por_nombre(padre.getValue()).setDato(documentos1);
-//        documentos1.ingresarDato(objetojson);
-//        System.out.println("La lista de JSON Stores es: ");
-//        System.out.println();
-//        listasStore.imprimir_por_nombre();
-//        System.out.println("Lista de Documentos:");
-//        documentos1.imprimir();
-
 
         return item3;
     }
@@ -351,7 +343,7 @@ public class Interfaz extends Application {
 
         // 2. No requerido
 
-        Label label_circulo_no_requerido = new Label("Requerido ");
+        Label label_circulo_no_requerido = new Label("No Requerido ");
         label_circulo_no_requerido.setLayoutX(10);
         label_circulo_no_requerido.setLayoutY(430);
 
@@ -440,10 +432,16 @@ public class Interfaz extends Application {
     }
 
     public void Tabla(TreeItem<String> padre) {
+        System.out.println("TABLA :");
+        System.out.println(listasStore.buscar_por_nombre(padre.getParent().getValue()));
+        System.out.println(listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store());
+        System.out.println(listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(padre.getValue()));
+        System.out.println(listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(padre.getValue()).getDato_Documento());
 
         Objetos lista = listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(padre.getValue()).getDato_Documento();
-        listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(padre.getValue()).getDato_Documento();
-
+        String nombre_tabla = listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().getNombre_lista();
+        String llave1 = listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().getLlave_1();
+        String llave2 = listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().getLlave_2();
         Nodo actual = lista.dar_inicio();
 
         TableView<Tabla_datos> table = new TableView<Tabla_datos>();
@@ -456,32 +454,32 @@ public class Interfaz extends Application {
         Stage stage = new Stage();
         Scene scene = new Scene(new Group());
         stage.setTitle("Objetos en Memoria de " + padre.getValue());
-        stage.setWidth(450);
-        stage.setHeight(500);
+        stage.setWidth(620);
+        stage.setHeight(470);
 
         final Label label = new Label(padre.getValue());
         label.setFont(new Font("Arial", 20));
 
         table.setEditable(true);
 
-        TableColumn NameCol = new TableColumn("Nombre");
-        NameCol.setMinWidth(100);
+        TableColumn NameCol = new TableColumn(nombre_tabla);
+        NameCol.setMinWidth(200);
         NameCol.setCellValueFactory(
                 new PropertyValueFactory<Tabla_datos, String>("Nombre"));
 
-        TableColumn TipoCOL = new TableColumn("Tipo");
-        TipoCOL.setMinWidth(100);
+        TableColumn TipoCOL = new TableColumn(llave2);
+        TipoCOL.setMinWidth(200);
         TipoCOL.setCellValueFactory(
                 new PropertyValueFactory<Tabla_datos, String>("Llave"));
 
-        TableColumn LlaveCOL = new TableColumn("Llave");
+        TableColumn LlaveCOL = new TableColumn(llave1);
         LlaveCOL.setMinWidth(200);
         LlaveCOL.setCellValueFactory(
                 new PropertyValueFactory<Tabla_datos, String>("Tipo"));
-        meter_valores_en_observable_list(actual, data);
+        meter_valores_en_observable_list(actual.getSiguiente(), data);
         table.setItems(data);
 
-        table.getColumns().addAll(NameCol, TipoCOL, LlaveCOL);
+        table.getColumns().addAll(NameCol, LlaveCOL, TipoCOL);
 
         final VBox vbox = new VBox();
         vbox.setSpacing(5);
@@ -536,7 +534,7 @@ public class Interfaz extends Application {
         canvas2.getChildren().addAll(nombre, texto, imageView, boton1);
 
 
-        Scene scene = new Scene(canvas2, 500, 200);
+        Scene scene = new Scene(canvas2, 600, 200);
         ventanita.setScene(scene);
         ventanita.showAndWait();
 
@@ -586,6 +584,7 @@ public class Interfaz extends Application {
 
 
                 System.out.println("SE INSERTO POR SEGUNDA VEZ");
+
                 listasStore.buscar_por_nombre(padre.getValue()).getDato_Store().ingresarDato(objetojson, nombre_doc,nombre_doc,tipo_del_atributo,llave_primaria,llave_foranea);
 
                 listasStore.buscar_por_nombre(padre.getValue()).getDato_Store().imprimir();
@@ -598,12 +597,14 @@ public class Interfaz extends Application {
 
                 Documentos documentos1 = new Documentos();
 
-                documentos1.ingresarDato(objetojson, nombre_doc, nombre_doc,tipo_del_atributo,llave_primaria,llave_foranea);
+
 
                 listasStore.buscar_por_nombre(padre.getValue()).setDato_Store(documentos1);
 
-                listasStore.buscar_por_nombre(padre.getValue()).getDato_Store().imprimir();
 
+
+                listasStore.buscar_por_nombre(padre.getValue()).getDato_Store().ingresarDato(objetojson, nombre_doc, nombre_doc,tipo_del_atributo,llave_primaria,llave_foranea);
+                listasStore.buscar_por_nombre(padre.getValue()).getDato_Store().imprimir();
             }
 
         }
