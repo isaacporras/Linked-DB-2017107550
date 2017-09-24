@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eaa0ce73-e0bd-4ded-8ed8-56269d3117a4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Progra1/paquete1/Documentos.class" afterPath="$PROJECT_DIR$/out/production/Progra1/paquete1/Documentos.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz$1.class" afterPath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz$2.class" afterPath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz$3.class" afterPath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz$3.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz$4.class" afterPath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz$4.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz$5.class" afterPath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz$5.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz$6.class" afterPath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz$6.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz.class" afterPath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/paquete1/Documentos.java" afterPath="$PROJECT_DIR$/src/paquete1/Documentos.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/paquete1/Interfaz.java" afterPath="$PROJECT_DIR$/src/paquete1/Interfaz.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -24,17 +20,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Interfaz.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Interfaz.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/paquete1/Interfaz.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="457" column="26" lean-forward="false" selection-start-line="457" selection-start-column="26" selection-end-line="457" selection-end-column="26" />
+            <state relative-caret-position="100">
+              <caret line="210" column="803" lean-forward="false" selection-start-line="210" selection-start-column="803" selection-end-line="210" selection-end-column="803" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Progra1.iml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Progra1.iml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Progra1.iml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
@@ -47,12 +43,25 @@
       <file leaf-file-name="Documentos.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/paquete1/Documentos.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
+            <state relative-caret-position="1575">
               <caret line="105" column="26" lean-forward="false" selection-start-line="105" selection-start-column="26" selection-end-line="105" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#4055#4056#0" expanded="true" />
                 <element signature="e#4085#4086#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Nodo.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/paquete1/Nodo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1032">
+              <caret line="112" column="35" lean-forward="false" selection-start-line="112" selection-start-column="35" selection-end-line="112" selection-end-column="35" />
+              <folding>
+                <element signature="e#2808#2809#0" expanded="true" />
+                <element signature="e#2850#2851#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -125,6 +134,12 @@
               <item name="Progra1" type="b2602c69:ProjectViewProjectNode" />
               <item name="Progra1" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Progra1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Progra1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="paquete1" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Progra1" type="b2602c69:ProjectViewProjectNode" />
@@ -372,15 +387,23 @@
       <option name="project" value="LOCAL" />
       <updated>1506131281759</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Mejoras en el programa">
+      <created>1506216387413</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1506216387414</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31439894" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31411764" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -391,7 +414,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18263888" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18263888" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -445,7 +468,8 @@
     <MESSAGE value="Proyecto con javaDoc" />
     <MESSAGE value="Proyecto con interfaz de documento" />
     <MESSAGE value="Correccion de logica del programa" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correccion de logica del programa" />
+    <MESSAGE value="Mejoras en el programa" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mejoras en el programa" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -700,16 +724,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Progra1.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/paquete1/Nodo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
+        <state relative-caret-position="1032">
           <caret line="112" column="35" lean-forward="false" selection-start-line="112" selection-start-column="35" selection-end-line="112" selection-end-column="35" />
+          <folding>
+            <element signature="e#2808#2809#0" expanded="true" />
+            <element signature="e#2850#2851#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/paquete1/Documentos.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
+        <state relative-caret-position="1575">
           <caret line="105" column="26" lean-forward="false" selection-start-line="105" selection-start-column="26" selection-end-line="105" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -721,16 +757,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/paquete1/Interfaz.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="457" column="26" lean-forward="false" selection-start-line="457" selection-start-column="26" selection-end-line="457" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Progra1.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="100">
+          <caret line="210" column="803" lean-forward="false" selection-start-line="210" selection-start-column="803" selection-end-line="210" selection-end-column="803" />
           <folding />
         </state>
       </provider>

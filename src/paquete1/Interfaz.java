@@ -208,12 +208,13 @@ public class Interfaz extends Application {
                         public void handle(ActionEvent arg0) {
 
 //                            mostrar_objetos_en_memoria(arbol.getSelectionModel().selectedItemProperty().get(), arbol.getSelectionModel().selectedItemProperty().get());
-                            Tabla(arbol.getSelectionModel().selectedItemProperty().get());
+                            Tabla(arbol.getSelectionModel().selectedItemProperty().get(),listasStore.buscar_por_nombre(arbol.getSelectionModel().selectedItemProperty().get().getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(arbol.getSelectionModel().selectedItemProperty().get().getValue()).getNombre(),listasStore.buscar_por_nombre(arbol.getSelectionModel().selectedItemProperty().get().getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(arbol.getSelectionModel().selectedItemProperty().get().getValue()).getLlave_primaria(), listasStore.buscar_por_nombre(arbol.getSelectionModel().selectedItemProperty().get().getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(arbol.getSelectionModel().selectedItemProperty().get().getValue()).getLlave_foranea());
+
                         }
                     }).build(),
 
 
-                    MenuItemBuilder.create().text("Eliminar todods los Objeto JSON").onAction(new EventHandler<ActionEvent>() {
+                    MenuItemBuilder.create().text("Eliminar todos los Objeto JSON").onAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent arg0) {
 
@@ -334,12 +335,7 @@ public class Interfaz extends Application {
         label_circulo_requerido.setLayoutX(10);
         label_circulo_requerido.setLayoutY(400);
 
-        circulo_requerido = new RadioButton();
-        circulo_requerido.setLayoutX(100);
-        circulo_requerido.setLayoutY(400);
-        circulo_requerido.setOnAction(e->{
-            circulo_no_requerido.setSelected(false);
-        });
+
 
         // 2. No requerido
 
@@ -347,11 +343,25 @@ public class Interfaz extends Application {
         label_circulo_no_requerido.setLayoutX(10);
         label_circulo_no_requerido.setLayoutY(430);
 
+
+
         circulo_no_requerido = new RadioButton();
         circulo_no_requerido.setLayoutX(100);
         circulo_no_requerido.setLayoutY(430);
         circulo_no_requerido.setOnAction(e->{
             circulo_requerido.setSelected(false);
+            text_tipo_especial_foranea.setText(text_tipo_especial_primaria.getText());
+            text_tipo_especial_foranea.setEditable(false);
+
+        });
+        circulo_requerido = new RadioButton();
+        circulo_requerido.setLayoutX(100);
+        circulo_requerido.setLayoutY(400);
+        circulo_requerido.setOnAction(e->{
+            circulo_no_requerido.setSelected(false);
+            text_tipo_especial_foranea.setText("");
+            text_tipo_especial_foranea.setEditable(true);
+
         });
 
 
@@ -422,26 +432,22 @@ public class Interfaz extends Application {
     }
 
 
-    public void meter_valores_en_observable_list(Nodo actual_1, ObservableList<Tabla_datos> data) {
+    public void meter_valores_en_observable_list(Nodo actual_1, ObservableList<Tabla_datos> data , Documentos lista) {
 
         while (actual_1 != null) {
 
             data.add(new Tabla_datos(actual_1.getDato_JSON().get("Nombre: ").toString(), actual_1.getDato_JSON().get("Llave: ").toString(), actual_1.getDato_JSON().get("Tipo").toString()));
             actual_1 = actual_1.getSiguiente();
+
         }
     }
 
-    public void Tabla(TreeItem<String> padre) {
+    public void Tabla(TreeItem<String> padre, String nombre_tabla, String llave1, String llave2) {
+
         System.out.println("TABLA :");
-        System.out.println(listasStore.buscar_por_nombre(padre.getParent().getValue()));
-        System.out.println(listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store());
-        System.out.println(listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(padre.getValue()));
-        System.out.println(listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(padre.getValue()).getDato_Documento());
 
         Objetos lista = listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(padre.getValue()).getDato_Documento();
-        String nombre_tabla = listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().getNombre_lista();
-        String llave1 = listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().getLlave_1();
-        String llave2 = listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().getLlave_2();
+
         Nodo actual = lista.dar_inicio();
 
         TableView<Tabla_datos> table = new TableView<Tabla_datos>();
@@ -476,8 +482,11 @@ public class Interfaz extends Application {
         LlaveCOL.setMinWidth(200);
         LlaveCOL.setCellValueFactory(
                 new PropertyValueFactory<Tabla_datos, String>("Tipo"));
-        meter_valores_en_observable_list(actual.getSiguiente(), data);
+        System.out.println(actual);
+
+        meter_valores_en_observable_list(actual, data, listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store());
         table.setItems(data);
+
 
         table.getColumns().addAll(NameCol, LlaveCOL, TipoCOL);
 
@@ -576,7 +585,6 @@ public class Interfaz extends Application {
             nuevo_objeto.put("Llave: ", llave_primaria);
             nuevo_objeto.put("Tipo", tipo_del_atributo);
 
-            objetojson.ingresarDato(nuevo_objeto);
             System.out.println("El dato de mi store este :" + listasStore.buscar_por_nombre(padre.getValue()).getDato_Store());
 
 
