@@ -1,6 +1,7 @@
 package paquete1;
 
 import apple.laf.JRSUIUtils;
+import com.sun.tools.classfile.Synthetic_attribute;
 import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.json.simple.JSONObject;
@@ -59,6 +60,8 @@ public class Interfaz extends Application {
     public String menu_botton_selected;
     int cuenta = 1;
     private boolean isRightClick;
+
+
 
     Store listasStore = new Store();
 
@@ -229,10 +232,18 @@ public class Interfaz extends Application {
                             eliminar_json_por_llave();
                         }
                     }).build(),
+                    MenuItemBuilder.create().text("Buscar Objeto").onAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent arg0) {
+                            buscar_objeto();
+
+
+                        }
+                    }).build(),
                     MenuItemBuilder.create().text("Actualizar Objetos").onAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent arg0) {
-                            System.out.println("Menu Item Clicked!");
+                            actualizar_objetos(listasStore.buscar_por_nombre(arbol.getSelectionModel().selectedItemProperty().get().getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(arbol.getSelectionModel().selectedItemProperty().get().getValue()).getDato_Documento(),"ATRIBUTO","CONDICION");
                         }
                     }).build())
 
@@ -324,6 +335,7 @@ public class Interfaz extends Application {
         text_tipo_especial_foranea.setLayoutX(130);
         text_tipo_especial_foranea.setLayoutY(330);
         text_tipo_especial_foranea.minWidth(60);
+        text_tipo_especial_foranea.setEditable(false);
 
 
         // BOTONES DE REQUERIDO O NO REQUERIDO //
@@ -395,7 +407,7 @@ public class Interfaz extends Application {
         boton_documento.setLayoutY(400);
 
         boton_documento.setOnAction(e -> {
-            if (text_atributo_nombre.getText().equals("") || menu_botton_selected.equals("") || tipo_especial_primaria.getText().equals("")) {
+            if (text_atributo_nombre.getText().equals("") || menu_botton_selected.equals("") || text_tipo_especial_primaria.getText().equals("") || text_tipo_especial_foranea.getText().equals("")) {
                 display();
 
             } else {
@@ -627,18 +639,18 @@ public class Interfaz extends Application {
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Elimando Json...");
         window.setMinWidth(250);
-        window.setMinHeight(50);
+        window.setMinHeight(60);
 
         Label label = new Label();
         label.setText("Digite la llave del objeto json: ");
 
         Button boton = new Button("OK");
-        boton.setLayoutX(90);
+        boton.setLayoutX(190);
         boton.setLayoutY(20);
 
         TextField llave = new TextField();
         llave.setLayoutX(10);
-        llave.setLayoutY(120);
+        llave.setLayoutY(20);
         llave.minWidth(70);
 
         boton.setOnAction(e -> {
@@ -664,6 +676,35 @@ public class Interfaz extends Application {
 //
 //        listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado.getValue()).getDato_Documento().imprimirObjectos();
 //    }
+
+    public void display_no_es_tipo() {
+
+
+        Stage window_no_es_tipo = new Stage();
+        window_no_es_tipo.initModality(Modality.APPLICATION_MODAL);
+        window_no_es_tipo.setTitle("Error!");
+        window_no_es_tipo.setMinWidth(250);
+        window_no_es_tipo.setMinHeight(50);
+
+        Label label_no_es_tipo = new Label();
+        label_no_es_tipo.setText("El tipo ingresado no concuerda con el establecido");
+        Button deleteButton_no_es_tipo = new Button("OK");
+        deleteButton_no_es_tipo.setLayoutX(90);
+        deleteButton_no_es_tipo.setLayoutY(20);
+
+        Pane layout_no_es_tipo= new Pane();
+        layout_no_es_tipo.getChildren().addAll(label_no_es_tipo, deleteButton_no_es_tipo);
+
+
+        Scene scene_no_es_tipo = new Scene(layout_no_es_tipo);
+        deleteButton_no_es_tipo.setOnAction(e->
+                window_no_es_tipo.close());
+
+        window_no_es_tipo.setScene(scene_no_es_tipo);
+
+        window_no_es_tipo.showAndWait();
+
+    }
     public void Ventana_crear_JSON_Object(TreeItem<String> seleccionado){
 
 
@@ -673,6 +714,8 @@ public class Interfaz extends Application {
         String llave_primaria = listasStore.buscar_por_nombre(seleccionado.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado2).getLlave_primaria();
         String llave_foranea = listasStore.buscar_por_nombre(seleccionado.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado2).getLlave_foranea();
         Stage ventana_json_object = new Stage();
+
+        System.out.println("******** EL TIPO ES :"+ tipo);
 
         ventana_json_object.initModality(Modality.APPLICATION_MODAL);
         ventana_json_object.setTitle("Creando JSON object...");
@@ -690,14 +733,6 @@ public class Interfaz extends Application {
         //Tipo de atributo //
 
 
-//        Label Tipo_del_atributo_JSON = new Label(tipo + " : ");
-//        Tipo_del_atributo_JSON.setLayoutX(15);
-//        Tipo_del_atributo_JSON.setLayoutY(250);
-
-        // Tipo Especial : Primaria y foranea //
-
-        //1.1.Primaria : Label
-
         Label tipo_especial_primaria_JSON = new Label(llave_primaria + " : ");
         tipo_especial_primaria_JSON.setLayoutX(20);
         tipo_especial_primaria_JSON.setLayoutY(40);
@@ -710,7 +745,9 @@ public class Interfaz extends Application {
 
         //2.1.Foranea : Label
 
-        Label tipo_especial_foranea_JSON = new Label(llave_foranea +" : ");
+
+
+        Label tipo_especial_foranea_JSON = new Label(llave_foranea + " : ");
         tipo_especial_foranea_JSON.setLayoutX(20);
         tipo_especial_foranea_JSON.setLayoutY(70);
 
@@ -722,11 +759,63 @@ public class Interfaz extends Application {
         text_tipo_especial_foranea_JSON.minWidth(60);
 
 
+        if (llave_foranea.equals(llave_primaria)){
+
+            text_tipo_especial_foranea_JSON.setEditable(false);
+            text_tipo_especial_foranea_JSON.setVisible(false);
+            tipo_especial_foranea_JSON.setVisible(false);
+
+        }
+
+
         Button boton_json_object = new Button("Listo!");
         boton_json_object.setLayoutX(240);
         boton_json_object.setLayoutY(110);
         boton_json_object.setOnAction(e->{
-            System.out.println("Lo escrito en la primaria es : "+text_tipo_especial_primaria_JSON.getText() + " y en la foranea es :"+text_tipo_especial_foranea_JSON.getText());
+
+            if (llave_foranea.equals(llave_primaria)){
+                text_tipo_especial_foranea_JSON.setText(text_tipo_especial_primaria_JSON.getText());
+            }
+            System.out.println("el tipo es :" + tipo);
+
+            if (!text_tipo_especial_foranea_JSON.getText().equals("") && !text_tipo_especial_primaria_JSON.getText().equals("")){
+                if (tipo.equals("int")){
+                    if (!verificar_que_tipo(text_tipo_especial_primaria_JSON.getText()).equals("int") ){
+                        System.out.println("no es entero");
+                        display_no_es_tipo();
+                        return;
+                    }
+
+                }
+                if(tipo.equals("float")){
+                    if (!verificar_que_tipo(text_tipo_especial_primaria_JSON.getText()).equals("float")){
+                        System.out.println("no es Float");
+                        display_no_es_tipo();
+                        return;
+                    }
+
+                }
+                if(tipo.equals("cadena")){
+                    if (!verificar_que_tipo(text_tipo_especial_primaria_JSON.getText()).equals("cadena")){
+                        System.out.println("no es Cadena");
+                        display_no_es_tipo();
+                        return;
+
+                    }
+
+                }
+                if (tipo.equals("fecha-hora")){
+                    if (!verificar_que_tipo(text_tipo_especial_primaria_JSON.getText()).equals("fecha-hora")){
+                        System.out.println("no es Fecha - Hora");
+                        display_no_es_tipo();
+                        return;
+                    }
+
+                }
+
+            }
+
+
             if (text_tipo_especial_primaria_JSON.getText().equals("")  || text_tipo_especial_foranea_JSON.getText().equals("")){
                 System.out.println("NO SE ESCRIBIO NADA");
                 display();
@@ -737,10 +826,6 @@ public class Interfaz extends Application {
                 jsonObject.put("Nombre: ","");
                 jsonObject.put("Llave: ", text_tipo_especial_primaria_JSON.getText());
                 jsonObject.put("Tipo",text_tipo_especial_foranea_JSON.getText());
-                System.out.println("EL OBJETO JSON QUE SE EATA INGRESANDO ES : " + jsonObject);
-                System.out.println("estan en el store : " + listasStore.buscar_por_nombre(seleccionado.getParent().getValue()));
-                System.out.println("La lista de documentos es: "+listasStore.buscar_por_nombre(seleccionado.getParent().getValue()).getDato_Store());
-                System.out.println("Mi lista de objetos es : "+ listasStore.buscar_por_nombre(seleccionado.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado2));
 
                 listasStore.buscar_por_nombre(seleccionado.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado2).getDato_Documento().ingresarDato(jsonObject);
                 listasStore.buscar_por_nombre(seleccionado.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado2).getDato_Documento().imprimirObjectos();
@@ -754,10 +839,240 @@ public class Interfaz extends Application {
         ventana_json_object.setScene(scene2);
         ventana_json_object.showAndWait();
 
+    }
+    public String verificar_que_tipo(String dato){
+        if (numerico(dato).equals("int")){
+            return "int";
+        }
+        if (numerico(dato).equals("float")){
+            return "float";
+        }
+        if (fecha_hora(dato)){
+            return "fecha-hora";
+        }
+        if(numerico(dato).equals("NO NUMERICO")){
+            return "cadena";
+        }
+        return "NINGUNO";
+    }
 
+    public String numerico(String numero){
+        if(numero.contains(".")) {
 
+            System.out.println("EL NUMERO QUITANDOLE EL PUNTO ES :"+numero.replace(".", "2"));
+            try {
+                Integer.parseInt(numero.replace(".", "2"));
+                return "float";
+
+            }
+            catch (NumberFormatException nsd){
+                return "NO NUMERICO";
+            }
+        }
+        try{
+
+            Integer.parseInt(numero);
+            if (Integer.parseInt(numero) % 1 == 0){
+                return "int";
+            }
+        }
+        catch (NumberFormatException nfe) {
+            return "NO NUMERICO";
+        }
+        return "NINGUNO ALV";
+    }
+    public boolean fecha_hora(String fecha){
+        if(fecha.contains("/")|| (fecha.contains(":")&& fecha.length()== 5)){
+            return true;
+        }
+        else{
+            return false;
+        }
 
     }
+    public void meter_valores_en_lista_buscar(Nodo actual_1, ObservableList<Tabla_datos> data , Documentos lista, String atributo_buscado, String seleccionado) {
+
+        while (actual_1 != null) {
+            if (atributo_buscado.equals(actual_1.getDato_JSON().get("Nombre: ").toString()) ||  atributo_buscado.equals(actual_1.getDato_JSON().get("Llave: ").toString())    ||   atributo_buscado.equals(actual_1.getDato_JSON().get("Tipo").toString())){
+                data.add(new Tabla_datos(actual_1.getDato_JSON().get("Nombre: ").toString(), actual_1.getDato_JSON().get("Llave: ").toString(), actual_1.getDato_JSON().get("Tipo").toString()));
+                actual_1 = actual_1.getSiguiente();
+            }
+            else{
+                actual_1 = actual_1.getSiguiente();
+            }
+
+
+
+        }
+    }
+
+    public void Tabla_buscar(TreeItem<String> padre, String nombre_tabla, String llave1, String llave2, String atributo_buscado) {
+
+        System.out.println("TABLA :");
+
+        Objetos lista = listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(padre.getValue()).getDato_Documento();
+
+        Nodo actual = lista.dar_inicio();
+
+        TableView<Tabla_datos> table = new TableView<Tabla_datos>();
+        final ObservableList<Tabla_datos> data =
+                FXCollections.observableArrayList(
+                        new Tabla_datos("", "", "")
+
+                );
+
+        Stage stage = new Stage();
+        Scene scene = new Scene(new Group());
+        stage.setTitle("Objetos Buscados");
+        stage.setWidth(620);
+        stage.setHeight(470);
+
+        final Label label = new Label("Objetos encontrados:");
+        label.setFont(new Font("Arial", 20));
+
+        table.setEditable(true);
+
+        TableColumn NameCol = new TableColumn("Tipo");
+        NameCol.setMinWidth(200);
+        NameCol.setCellValueFactory(
+                new PropertyValueFactory<Tabla_datos, String>("Nombre"));
+
+        TableColumn TipoCOL = new TableColumn("Llave Foranea");
+        TipoCOL.setMinWidth(200);
+        TipoCOL.setCellValueFactory(
+                new PropertyValueFactory<Tabla_datos, String>("Llave"));
+
+        TableColumn LlaveCOL = new TableColumn("Llave Primaria");
+        LlaveCOL.setMinWidth(200);
+        LlaveCOL.setCellValueFactory(
+                new PropertyValueFactory<Tabla_datos, String>("Tipo"));
+        System.out.println(actual);
+
+        meter_valores_en_lista_buscar(actual, data, listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store(),atributo_buscado,padre.getValue());
+
+        table.setItems(data);
+
+
+        table.getColumns().addAll(NameCol, LlaveCOL, TipoCOL);
+
+        final VBox vbox = new VBox();
+        vbox.setSpacing(5);
+        vbox.setPadding(new Insets(10, 0, 0, 10));
+        vbox.getChildren().addAll(label, table);
+
+        ((Group) scene.getRoot()).getChildren().addAll(vbox);
+
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void buscar_objeto() {
+
+        Stage window = new Stage();
+
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setTitle("Buscar");
+        window.setMinWidth(250);
+        window.setMinHeight(60);
+
+        Label label = new Label();
+        label.setText("Digite el atributo a buscar ");
+
+        Button boton = new Button("OK");
+        boton.setLayoutX(190);
+        boton.setLayoutY(20);
+
+        TextField llave = new TextField();
+        llave.setLayoutX(10);
+        llave.setLayoutY(20);
+        llave.minWidth(70);
+
+        boton.setOnAction(e -> {
+            Tabla_buscar(arbol.getSelectionModel().selectedItemProperty().get(),listasStore.buscar_por_nombre(arbol.getSelectionModel().selectedItemProperty().get().getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(arbol.getSelectionModel().selectedItemProperty().get().getValue()).getNombre(),listasStore.buscar_por_nombre(arbol.getSelectionModel().selectedItemProperty().get().getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(arbol.getSelectionModel().selectedItemProperty().get().getValue()).getLlave_primaria(), listasStore.buscar_por_nombre(arbol.getSelectionModel().selectedItemProperty().get().getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(arbol.getSelectionModel().selectedItemProperty().get().getValue()).getLlave_foranea(),llave.getText());
+            window.close();
+        });
+
+        Pane layout = new Pane();
+        layout.getChildren().addAll(llave, label, boton);
+
+
+        Scene scene = new Scene(layout);
+        window.setScene(scene);
+        window.showAndWait();
+    }
+
+    public void actualizar_objetos(Objetos lista , String atributo_a_actualizar, String condicion){
+        Stage window = new Stage();
+
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setTitle("Actualizar");
+        window.setMinWidth(800);
+        window.setMinHeight(150);
+
+
+
+        Label label_nuevo_atributo = new Label();
+        label_nuevo_atributo.setText("Digite el nuevo atributo: ");
+        label_nuevo_atributo.setLayoutY(20);
+        label_nuevo_atributo.setLayoutX(20);
+
+        Label label_condicion = new Label();
+        label_condicion.setText("Digite la condición de busqueda:");
+        label_condicion.setLayoutY(60);
+        label_condicion.setLayoutX(20);
+
+        Button boton = new Button("OK");
+        boton.setLayoutX(450);
+        boton.setLayoutY(80);
+
+
+        TextField text_condicion = new TextField();
+        text_condicion.setLayoutX(250);
+        text_condicion.setLayoutY(60);
+        text_condicion.minWidth(70);
+
+        TextField text_nuevo_atributo = new TextField();
+        text_nuevo_atributo.setLayoutX(250);
+        text_nuevo_atributo.setLayoutY(20);
+        text_nuevo_atributo.minWidth(70);
+
+        boton.setOnAction(e -> {
+            Nodo actual = lista.dar_inicio();
+            while (actual!= null){
+                if (actual.getDato_JSON().get("Tipo").equals(text_condicion.getText())){
+                    actual.getDato_JSON().replace("Llave: ", text_nuevo_atributo.getText());
+                    actual = actual.getSiguiente();
+                }
+                else{
+                    actual = actual.getSiguiente();
+                }
+            }
+            actual = lista.dar_inicio();
+            while (actual!= null){
+                if (actual.getDato_JSON().get("Llave: ").equals(text_condicion.getText())){
+                    actual.getDato_JSON().replace("Tipo", text_nuevo_atributo.getText());
+                    actual = actual.getSiguiente();
+                }
+                else{
+                    actual = actual.getSiguiente();
+                }
+            }
+
+            window.close();
+        });
+
+        Pane layout = new Pane();
+        layout.getChildren().addAll(text_condicion, label_condicion, boton, text_nuevo_atributo, label_nuevo_atributo);
+
+
+        Scene scene = new Scene(layout);
+        window.setScene(scene);
+        window.showAndWait();
+
+    }
+
+
+
+
 
 
 

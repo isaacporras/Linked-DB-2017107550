@@ -112,4 +112,9 @@ public class Nodo {
     public String getLlave_primaria(){
         return this.llave_primaria;
     }
+
+    public void setLlave_primaria(String llave_primaria) {
+        this.llave_primaria = llave_primaria;
+    }
+
 }
