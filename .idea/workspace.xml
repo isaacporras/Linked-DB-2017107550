@@ -2,17 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eaa0ce73-e0bd-4ded-8ed8-56269d3117a4" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz$6.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Progra1/paquete1/Documentos.class" afterPath="$PROJECT_DIR$/out/production/Progra1/paquete1/Documentos.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz$3.class" afterPath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz.class" afterPath="$PROJECT_DIR$/out/production/Progra1/paquete1/Interfaz.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Progra1/paquete1/Nodo.class" afterPath="$PROJECT_DIR$/out/production/Progra1/paquete1/Nodo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Progra1/paquete1/Objetos.class" afterPath="$PROJECT_DIR$/out/production/Progra1/paquete1/Objetos.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Progra1/paquete1/Store.class" afterPath="$PROJECT_DIR$/out/production/Progra1/paquete1/Store.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/paquete1/Documentos.java" afterPath="$PROJECT_DIR$/src/paquete1/Documentos.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/paquete1/Interfaz.java" afterPath="$PROJECT_DIR$/src/paquete1/Interfaz.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/paquete1/Nodo.java" afterPath="$PROJECT_DIR$/src/paquete1/Nodo.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/paquete1/Objetos.java" afterPath="$PROJECT_DIR$/src/paquete1/Objetos.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/paquete1/Store.java" afterPath="$PROJECT_DIR$/src/paquete1/Store.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,19 +28,11 @@
       <file leaf-file-name="Interfaz.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/paquete1/Interfaz.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10044">
-              <caret line="1063" column="75" lean-forward="true" selection-start-line="1063" selection-start-column="75" selection-end-line="1063" selection-end-column="75" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Progra1.iml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Progra1.iml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="-794">
+              <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -47,12 +40,12 @@
       <file leaf-file-name="Documentos.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/paquete1/Documentos.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1575">
-              <caret line="105" column="26" lean-forward="false" selection-start-line="105" selection-start-column="26" selection-end-line="105" selection-end-column="26" />
+            <state relative-caret-position="128">
+              <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4055#4056#0" expanded="true" />
-                <element signature="e#4085#4086#0" expanded="true" />
+                <element signature="e#4112#4113#0" expanded="true" />
+                <element signature="e#4142#4143#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -61,8 +54,8 @@
       <file leaf-file-name="Objetos.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/paquete1/Objetos.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="542">
-              <caret line="42" column="105" lean-forward="false" selection-start-line="42" selection-start-column="105" selection-end-line="42" selection-end-column="105" />
+            <state relative-caret-position="810">
+              <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -71,16 +64,29 @@
       <file leaf-file-name="Nodo.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/paquete1/Nodo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="589">
-              <caret line="118" column="0" lean-forward="false" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+            <state relative-caret-position="454">
+              <caret line="121" column="39" lean-forward="false" selection-start-line="121" selection-start-column="39" selection-end-line="121" selection-end-column="39" />
               <folding>
-                <element signature="e#2640#2641#0" expanded="true" />
-                <element signature="e#2690#2691#0" expanded="true" />
-                <element signature="e#2808#2809#0" expanded="true" />
-                <element signature="e#2850#2851#0" expanded="true" />
-                <element signature="e#2910#2911#0" expanded="true" />
-                <element signature="e#2962#2963#0" expanded="true" />
+                <element signature="e#2750#2751#0" expanded="true" />
+                <element signature="e#2800#2801#0" expanded="true" />
+                <element signature="e#2918#2919#0" expanded="true" />
+                <element signature="e#2960#2961#0" expanded="true" />
+                <element signature="e#3020#3021#0" expanded="true" />
+                <element signature="e#3072#3073#0" expanded="true" />
+                <element signature="e#3150#3151#0" expanded="true" />
+                <element signature="e#3210#3211#0" expanded="true" />
+                <element signature="e#3262#3263#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Store.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/paquete1/Store.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="22" column="109" lean-forward="false" selection-start-line="22" selection-start-column="109" selection-end-line="22" selection-end-column="109" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -109,10 +115,10 @@
         <option value="$PROJECT_DIR$/src/paquete1/EncodeJSON.java" />
         <option value="$PROJECT_DIR$/src/paquete1/Main.java" />
         <option value="$PROJECT_DIR$/src/paquete1/Tabla_datos.java" />
-        <option value="$PROJECT_DIR$/src/paquete1/Store.java" />
-        <option value="$PROJECT_DIR$/src/paquete1/Documentos.java" />
-        <option value="$PROJECT_DIR$/src/paquete1/Objetos.java" />
         <option value="$PROJECT_DIR$/src/paquete1/Nodo.java" />
+        <option value="$PROJECT_DIR$/src/paquete1/Documentos.java" />
+        <option value="$PROJECT_DIR$/src/paquete1/Store.java" />
+        <option value="$PROJECT_DIR$/src/paquete1/Objetos.java" />
         <option value="$PROJECT_DIR$/src/paquete1/Interfaz.java" />
       </list>
     </option>
@@ -419,7 +425,14 @@
       <option name="project" value="LOCAL" />
       <updated>1506222111750</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Version con actualizar">
+      <created>1506314196161</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1506314196161</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -495,7 +508,8 @@
     <MESSAGE value="Correccion de logica del programa" />
     <MESSAGE value="Mejoras en el programa" />
     <MESSAGE value="Corrreccion de errores" />
-    <option name="LAST_COMMIT_MESSAGE" value="Corrreccion de errores" />
+    <MESSAGE value="Version con actualizar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Version con actualizar" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -736,10 +750,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/paquete1/Store.java">
+    <entry file="file://$PROJECT_DIR$/src/paquete1/Nodo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="103" lean-forward="false" selection-start-line="22" selection-start-column="103" selection-end-line="22" selection-end-column="103" />
+        <state relative-caret-position="454">
+          <caret line="121" column="39" lean-forward="false" selection-start-line="121" selection-start-column="39" selection-end-line="121" selection-end-column="39" />
+          <folding>
+            <element signature="e#2750#2751#0" expanded="true" />
+            <element signature="e#2800#2801#0" expanded="true" />
+            <element signature="e#2918#2919#0" expanded="true" />
+            <element signature="e#2960#2961#0" expanded="true" />
+            <element signature="e#3020#3021#0" expanded="true" />
+            <element signature="e#3072#3073#0" expanded="true" />
+            <element signature="e#3150#3151#0" expanded="true" />
+            <element signature="e#3210#3211#0" expanded="true" />
+            <element signature="e#3262#3263#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -751,46 +776,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/paquete1/Store.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="109" lean-forward="false" selection-start-line="22" selection-start-column="109" selection-end-line="22" selection-end-column="109" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/paquete1/Documentos.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1575">
-          <caret line="105" column="26" lean-forward="false" selection-start-line="105" selection-start-column="26" selection-end-line="105" selection-end-column="26" />
+        <state relative-caret-position="128">
+          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4055#4056#0" expanded="true" />
-            <element signature="e#4085#4086#0" expanded="true" />
+            <element signature="e#4112#4113#0" expanded="true" />
+            <element signature="e#4142#4143#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/paquete1/Objetos.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="542">
-          <caret line="42" column="105" lean-forward="false" selection-start-line="42" selection-start-column="105" selection-end-line="42" selection-end-column="105" />
+        <state relative-caret-position="810">
+          <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/paquete1/Nodo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="118" column="0" lean-forward="false" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
-          <folding>
-            <element signature="e#2640#2641#0" expanded="true" />
-            <element signature="e#2690#2691#0" expanded="true" />
-            <element signature="e#2808#2809#0" expanded="true" />
-            <element signature="e#2850#2851#0" expanded="true" />
-            <element signature="e#2910#2911#0" expanded="true" />
-            <element signature="e#2962#2963#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/paquete1/Interfaz.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10044">
-          <caret line="1063" column="75" lean-forward="true" selection-start-line="1063" selection-start-column="75" selection-end-line="1063" selection-end-column="75" />
-          <folding />
+        <state relative-caret-position="-794">
+          <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

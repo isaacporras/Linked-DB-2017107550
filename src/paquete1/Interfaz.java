@@ -40,8 +40,6 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-import javax.print.DocFlavor;
-import javax.swing.*;
 
 public class Interfaz extends Application {
     RadioButton circulo_requerido;
@@ -211,7 +209,7 @@ public class Interfaz extends Application {
                         public void handle(ActionEvent arg0) {
 
 //                            mostrar_objetos_en_memoria(arbol.getSelectionModel().selectedItemProperty().get(), arbol.getSelectionModel().selectedItemProperty().get());
-                            Tabla(arbol.getSelectionModel().selectedItemProperty().get(),listasStore.buscar_por_nombre(arbol.getSelectionModel().selectedItemProperty().get().getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(arbol.getSelectionModel().selectedItemProperty().get().getValue()).getNombre(),listasStore.buscar_por_nombre(arbol.getSelectionModel().selectedItemProperty().get().getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(arbol.getSelectionModel().selectedItemProperty().get().getValue()).getLlave_primaria(), listasStore.buscar_por_nombre(arbol.getSelectionModel().selectedItemProperty().get().getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(arbol.getSelectionModel().selectedItemProperty().get().getValue()).getLlave_foranea());
+                            Tabla(arbol.getSelectionModel().selectedItemProperty().get(),listasStore.buscar_por_nombre(arbol.getSelectionModel().selectedItemProperty().get().getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(arbol.getSelectionModel().selectedItemProperty().get().getValue()).getNombre(),listasStore.buscar_por_nombre(arbol.getSelectionModel().selectedItemProperty().get().getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(arbol.getSelectionModel().selectedItemProperty().get().getValue()).getLlave_primaria(), listasStore.buscar_por_nombre(arbol.getSelectionModel().selectedItemProperty().get().getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(arbol.getSelectionModel().selectedItemProperty().get().getValue()).getLlave_foranea(),listasStore.buscar_por_nombre(arbol.getSelectionModel().selectedItemProperty().get().getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(arbol.getSelectionModel().selectedItemProperty().get().getValue()).getNombre_del_atr());
 
                         }
                     }).build(),
@@ -292,14 +290,25 @@ public class Interfaz extends Application {
 
         // Nombre del Documento  //
 
-        Label Nombre_Atributo = new Label("Nombre:");
-        Nombre_Atributo.setLayoutX(20);
+        Label Nombre_Atributo = new Label("Nombre del Documento:");
+        Nombre_Atributo.setLayoutX(10);
         Nombre_Atributo.setLayoutY(200);
 
         TextField text_atributo_nombre = new TextField();
-        text_atributo_nombre.setLayoutX(130);
+        text_atributo_nombre.setLayoutX(170);
         text_atributo_nombre.setLayoutY(195);
         text_atributo_nombre.minWidth(60);
+
+        // Nombre del Documento  //
+
+        Label Nombre_Atributo_real = new Label("Nombre del Atributo:");
+        Nombre_Atributo_real.setLayoutX(10);
+        Nombre_Atributo_real.setLayoutY(295);
+
+        TextField text_atributo_nombre_real = new TextField();
+        text_atributo_nombre_real.setLayoutX(170);
+        text_atributo_nombre_real.setLayoutY(295);
+        text_atributo_nombre_real.minWidth(60);
 
 
         //Tipo de atributo //
@@ -315,25 +324,25 @@ public class Interfaz extends Application {
 
         Label tipo_especial_primaria = new Label("Llave Primaria :");
         tipo_especial_primaria.setLayoutX(20);
-        tipo_especial_primaria.setLayoutY(300);
+        tipo_especial_primaria.setLayoutY(330);
         //1.2.Primaria : TextField
 
         TextField text_tipo_especial_primaria= new TextField();
-        text_tipo_especial_primaria.setLayoutX(130);
-        text_tipo_especial_primaria.setLayoutY(295);
+        text_tipo_especial_primaria.setLayoutX(170);
+        text_tipo_especial_primaria.setLayoutY(330);
         text_tipo_especial_primaria.minWidth(60);
 
         //2.1.Foranea : Label
 
         Label tipo_especial_foranea = new Label("Llave Foranea :");
         tipo_especial_foranea.setLayoutX(20);
-        tipo_especial_foranea.setLayoutY(330);
+        tipo_especial_foranea.setLayoutY(360);
 
         //2.2.Foranea : Textfield
 
         TextField text_tipo_especial_foranea = new TextField();
-        text_tipo_especial_foranea.setLayoutX(130);
-        text_tipo_especial_foranea.setLayoutY(330);
+        text_tipo_especial_foranea.setLayoutX(170);
+        text_tipo_especial_foranea.setLayoutY(360);
         text_tipo_especial_foranea.minWidth(60);
         text_tipo_especial_foranea.setEditable(false);
 
@@ -391,11 +400,16 @@ public class Interfaz extends Application {
         MenuItem menuItemfecha_hora = new MenuItem("Fecha - Hora");
         menuItemfecha_hora.setOnAction(e->{
             menu_botton_selected = "fecha-hora";
+
         });
 
         MenuButton menuButton = new MenuButton("Tipo",null,menuItemint,menuItemfloat,menuItemcadena,menuItemfecha_hora);
-        menuButton.setLayoutX(130);
+        menuButton.setLayoutX(170);
         menuButton.setLayoutY(245);
+
+
+
+
 
 
 
@@ -407,19 +421,19 @@ public class Interfaz extends Application {
         boton_documento.setLayoutY(400);
 
         boton_documento.setOnAction(e -> {
-            if (text_atributo_nombre.getText().equals("") || menu_botton_selected.equals("") || text_tipo_especial_primaria.getText().equals("") || text_tipo_especial_foranea.getText().equals("")) {
+            if (text_atributo_nombre.getText().equals("") || menu_botton_selected.equals("") || text_tipo_especial_primaria.getText().equals("") || text_tipo_especial_foranea.getText().equals("") || text_atributo_nombre_real.getText().equals("")) {
                 display();
 
             } else {
                 if (nivel == 1) {
                     armarHijoArbol(padre_seleccionado, text_atributo_nombre.getText());
 
-                    meter_en_documentos(padre_seleccionado, text_atributo_nombre.getText(), nivel, item_seleccionado.getValue(), menu_botton_selected, text_tipo_especial_primaria.getText(),text_tipo_especial_foranea.getText());
+                    meter_en_documentos(padre_seleccionado, text_atributo_nombre.getText(), nivel, item_seleccionado.getValue(), menu_botton_selected, text_tipo_especial_primaria.getText(),text_tipo_especial_foranea.getText(),text_atributo_nombre_real.getText());
                     menu_botton_selected = "";
                     ventana_documento.close();
                 }
                 if (nivel == 2) {
-                    meter_en_documentos(padre_seleccionado, text_atributo_nombre.getText(), nivel, item_seleccionado.getValue(), menu_botton_selected, text_tipo_especial_primaria.getText(), text_tipo_especial_foranea.getText());
+                    meter_en_documentos(padre_seleccionado, text_atributo_nombre.getText(), nivel, item_seleccionado.getValue(), menu_botton_selected, text_tipo_especial_primaria.getText(), text_tipo_especial_foranea.getText(),text_atributo_nombre_real.getText());
                     menu_botton_selected = "";
                     ventana_documento.close();
                 }
@@ -435,6 +449,7 @@ public class Interfaz extends Application {
         canvas3.getChildren().addAll(text_atributo_nombre, Nombre_Atributo, Tipo_del_atributo, tipo_especial_primaria, text_tipo_especial_primaria);
         canvas3.getChildren().addAll( imageView_documento, imageView_documento_palabra,menuButton, tipo_especial_foranea, text_tipo_especial_foranea);
         canvas3.getChildren().addAll(boton_documento, circulo_requerido, circulo_no_requerido, label_circulo_requerido, label_circulo_no_requerido);
+        canvas3.getChildren().addAll(text_atributo_nombre_real,Nombre_Atributo_real);
         Scene scene2 = new Scene(canvas3, 600, 500);
         ventana_documento.setScene(scene2);
         ventana_documento.showAndWait();
@@ -454,7 +469,7 @@ public class Interfaz extends Application {
         }
     }
 
-    public void Tabla(TreeItem<String> padre, String nombre_tabla, String llave1, String llave2) {
+    public void Tabla(TreeItem<String> padre, String nombre_tabla, String llave1, String llave2, String nombre_del_atributo) {
 
         System.out.println("TABLA :");
 
@@ -480,7 +495,7 @@ public class Interfaz extends Application {
 
         table.setEditable(true);
 
-        TableColumn NameCol = new TableColumn(nombre_tabla);
+        TableColumn NameCol = new TableColumn(nombre_del_atributo);
         NameCol.setMinWidth(200);
         NameCol.setCellValueFactory(
                 new PropertyValueFactory<Tabla_datos, String>("Nombre"));
@@ -561,26 +576,10 @@ public class Interfaz extends Application {
 
     }
 
-    public void meter_en_documentos(TreeItem<String> padre, String nombre_doc, int nivel, String seleccionado, String tipo_del_atributo, String llave_primaria, String llave_foranea) {
+    public void meter_en_documentos(TreeItem<String> padre, String nombre_doc, int nivel, String seleccionado, String tipo_del_atributo, String llave_primaria, String llave_foranea, String nombre_del_atributo) {
 
 
-        if (nivel == 2) {
 
-            System.out.println("El padre de nivel 2 es :" + padre.getParent().getValue());
-
-            JSONObject nuevo_objeto = new JSONObject();
-
-            nuevo_objeto.put("Nombre: ", nombre_doc);
-            nuevo_objeto.put("Llave: ", llave_primaria);
-            nuevo_objeto.put("Tipo", tipo_del_atributo);
-
-            System.out.println("EL DATO DENTRO DE MI STORE ES : " + listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store());
-            System.out.println(listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado).getDato_Documento());
-            listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado).getDato_Documento().ingresarDato(nuevo_objeto);
-
-            return;
-
-        }
 
         if (nivel == 1) {
 
@@ -605,7 +604,7 @@ public class Interfaz extends Application {
 
                 System.out.println("SE INSERTO POR SEGUNDA VEZ");
 
-                listasStore.buscar_por_nombre(padre.getValue()).getDato_Store().ingresarDato(objetojson, nombre_doc,nombre_doc,tipo_del_atributo,llave_primaria,llave_foranea);
+                listasStore.buscar_por_nombre(padre.getValue()).getDato_Store().ingresarDato(objetojson, nombre_doc,nombre_doc,tipo_del_atributo,llave_primaria,llave_foranea,nombre_del_atributo);
 
                 listasStore.buscar_por_nombre(padre.getValue()).getDato_Store().imprimir();
 
@@ -623,7 +622,7 @@ public class Interfaz extends Application {
 
 
 
-                listasStore.buscar_por_nombre(padre.getValue()).getDato_Store().ingresarDato(objetojson, nombre_doc, nombre_doc,tipo_del_atributo,llave_primaria,llave_foranea);
+                listasStore.buscar_por_nombre(padre.getValue()).getDato_Store().ingresarDato(objetojson, nombre_doc, nombre_doc,tipo_del_atributo,llave_primaria,llave_foranea, nombre_del_atributo);
                 listasStore.buscar_por_nombre(padre.getValue()).getDato_Store().imprimir();
             }
 
@@ -713,6 +712,7 @@ public class Interfaz extends Application {
         String tipo = listasStore.buscar_por_nombre(seleccionado.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado2).getTipo_atributo();
         String llave_primaria = listasStore.buscar_por_nombre(seleccionado.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado2).getLlave_primaria();
         String llave_foranea = listasStore.buscar_por_nombre(seleccionado.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado2).getLlave_foranea();
+        String nombre_del_atributo_real = listasStore.buscar_por_nombre(seleccionado.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado2).getNombre_del_atr();
         Stage ventana_json_object = new Stage();
 
         System.out.println("******** EL TIPO ES :"+ tipo);
@@ -732,15 +732,25 @@ public class Interfaz extends Application {
 
         //Tipo de atributo //
 
+        Label tipo_nombre_atributo_real = new Label(nombre_del_atributo_real + " : ");
+        tipo_nombre_atributo_real.setLayoutX(20);
+        tipo_nombre_atributo_real.setLayoutY(40);
+        //1.2.Primaria : TextField
+
+        TextField text_nombre_atributo_real = new TextField();
+        text_nombre_atributo_real.setLayoutX(130);
+        text_nombre_atributo_real.setLayoutY(40);
+        text_nombre_atributo_real.minWidth(60);
+
 
         Label tipo_especial_primaria_JSON = new Label(llave_primaria + " : ");
         tipo_especial_primaria_JSON.setLayoutX(20);
-        tipo_especial_primaria_JSON.setLayoutY(40);
+        tipo_especial_primaria_JSON.setLayoutY(70);
         //1.2.Primaria : TextField
 
-        TextField text_tipo_especial_primaria_JSON= new TextField();
+        TextField text_tipo_especial_primaria_JSON = new TextField();
         text_tipo_especial_primaria_JSON.setLayoutX(130);
-        text_tipo_especial_primaria_JSON.setLayoutY(40);
+        text_tipo_especial_primaria_JSON.setLayoutY(70);
         text_tipo_especial_primaria_JSON.minWidth(60);
 
         //2.1.Foranea : Label
@@ -749,13 +759,13 @@ public class Interfaz extends Application {
 
         Label tipo_especial_foranea_JSON = new Label(llave_foranea + " : ");
         tipo_especial_foranea_JSON.setLayoutX(20);
-        tipo_especial_foranea_JSON.setLayoutY(70);
+        tipo_especial_foranea_JSON.setLayoutY(100);
 
         //2.2.Foranea : Textfield
 
         TextField text_tipo_especial_foranea_JSON = new TextField();
         text_tipo_especial_foranea_JSON.setLayoutX(130);
-        text_tipo_especial_foranea_JSON.setLayoutY(70);
+        text_tipo_especial_foranea_JSON.setLayoutY(100);
         text_tipo_especial_foranea_JSON.minWidth(60);
 
 
@@ -770,7 +780,7 @@ public class Interfaz extends Application {
 
         Button boton_json_object = new Button("Listo!");
         boton_json_object.setLayoutX(240);
-        boton_json_object.setLayoutY(110);
+        boton_json_object.setLayoutY(150);
         boton_json_object.setOnAction(e->{
 
             if (llave_foranea.equals(llave_primaria)){
@@ -823,7 +833,7 @@ public class Interfaz extends Application {
             if(!text_tipo_especial_primaria_JSON.getText().equals("")  && !text_tipo_especial_foranea_JSON.getText().equals("")){
                 System.out.println("SI SE ESCRIBIO ALGO");
                 JSONObject jsonObject = new JSONObject();
-                jsonObject.put("Nombre: ","");
+                jsonObject.put("Nombre: ",text_nombre_atributo_real.getText());
                 jsonObject.put("Llave: ", text_tipo_especial_primaria_JSON.getText());
                 jsonObject.put("Tipo",text_tipo_especial_foranea_JSON.getText());
 
@@ -835,7 +845,8 @@ public class Interfaz extends Application {
 
         Pane canvas_json = new Pane();
         canvas_json.getChildren().addAll(Nombre_Atributo_JSON, text_tipo_especial_primaria_JSON, text_tipo_especial_foranea_JSON, boton_json_object,tipo_especial_foranea_JSON, tipo_especial_primaria_JSON);
-        Scene scene2 = new Scene(canvas_json, 320, 150);
+        canvas_json.getChildren().addAll(text_nombre_atributo_real,tipo_nombre_atributo_real);
+        Scene scene2 = new Scene(canvas_json, 320, 200);
         ventana_json_object.setScene(scene2);
         ventana_json_object.showAndWait();
 
@@ -893,7 +904,7 @@ public class Interfaz extends Application {
     public void meter_valores_en_lista_buscar(Nodo actual_1, ObservableList<Tabla_datos> data , Documentos lista, String atributo_buscado, String seleccionado) {
 
         while (actual_1 != null) {
-            if (atributo_buscado.equals(actual_1.getDato_JSON().get("Nombre: ").toString()) ||  atributo_buscado.equals(actual_1.getDato_JSON().get("Llave: ").toString())    ||   atributo_buscado.equals(actual_1.getDato_JSON().get("Tipo").toString())){
+            if (atributo_buscado.equals(actual_1.getDato_JSON().get("Nombre: ").toString()) ||  atributo_buscado.equals(actual_1.getDato_JSON().get("Llave: ").toString())    ||   atributo_buscado.equals(actual_1.getDato_JSON().get("Tipo").toString()) ){
                 data.add(new Tabla_datos(actual_1.getDato_JSON().get("Nombre: ").toString(), actual_1.getDato_JSON().get("Llave: ").toString(), actual_1.getDato_JSON().get("Tipo").toString()));
                 actual_1 = actual_1.getSiguiente();
             }
@@ -1069,11 +1080,5 @@ public class Interfaz extends Application {
         window.showAndWait();
 
     }
-
-
-
-
-
-
 
 }

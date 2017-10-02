@@ -16,8 +16,9 @@ public class Nodo {
     private String tipo_atributo;
     private String llave_primaria;
     private String llave_foranea;
+    private  String nombre_del_atr;
 
-    public Nodo(Object dat, Documentos dato_str, Objetos obj_documentos, JSONObject objeto_json, Nodo ant, Nodo sig, String nom ,String padre, String nombre_atr , String tipo_atr , String llave_prim , String llave_fora) {
+    public Nodo(Object dat, Documentos dato_str, Objetos obj_documentos, JSONObject objeto_json, Nodo ant, Nodo sig, String nom ,String padre, String nombre_atr , String tipo_atr , String llave_prim , String llave_fora, String nombre_del_atributo) {
         dato_Store = dato_str;
         nombre = nom;
         dato = dat;
@@ -30,6 +31,7 @@ public class Nodo {
         tipo_atributo = tipo_atr;
         llave_primaria = llave_prim;
         llave_foranea = llave_fora;
+        nombre_del_atr = nombre_del_atributo;
 
     }
 
@@ -117,4 +119,11 @@ public class Nodo {
         this.llave_primaria = llave_primaria;
     }
 
+    public String getNombre_del_atr() {
+        return nombre_del_atr;
+    }
+
+    public void setNombre_del_atr(String nombre_del_atr) {
+        this.nombre_del_atr = nombre_del_atr;
+    }
 }

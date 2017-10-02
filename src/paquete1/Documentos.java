@@ -16,11 +16,11 @@ public class Documentos {
         fin = null;
     }
 
-    public void ingresarDato(Objetos dato, String nombre , String nombre_atr , String tipo_atr , String llave_prim , String llave_fora) {
+    public void ingresarDato(Objetos dato, String nombre , String nombre_atr , String tipo_atr , String llave_prim , String llave_fora, String nombre_atributo) {
 
 
         if (inicio == null) {
-            inicio = new Nodo(null,null ,dato,null,null, null, nombre, null, nombre_atr, tipo_atr, llave_prim ,llave_fora);
+            inicio = new Nodo(null,null ,dato,null,null, null, nombre, null, nombre_atr, tipo_atr, llave_prim ,llave_fora,nombre_atributo);
             inicio.setSiguiente(inicio);
             inicio.setAnterior(fin);
             fin = inicio;
@@ -31,7 +31,7 @@ public class Documentos {
 
         }
         else {
-            Nodo nuevo = new Nodo(null,null,dato,null,null,null, nombre, null,nombre_atr, tipo_atr, llave_prim ,llave_fora);
+            Nodo nuevo = new Nodo(null,null,dato,null,null,null, nombre, null,nombre_atr, tipo_atr, llave_prim ,llave_fora, nombre_atributo);
             nuevo.setSiguiente(inicio);
             nuevo.setAnterior(fin);
             fin.setSiguiente(nuevo);
