@@ -1,21 +1,35 @@
 package paquete1;
 
-import javafx.scene.control.TreeItem;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
+/**
+ * Clase que maneja todas las operaciones de la lista doblemente enlazada documentos
+ */
 public class Documentos {
-    private Object dato;
+
     private Nodo inicio;
     private Nodo fin;
     private String nombre_lista;
     private String llave_1;
     private String llave_2;
 
+    /**
+     * Inicializa la lista de documentos
+     */
     public Documentos() {
         inicio = null;
         fin = null;
     }
 
+    /**
+     * Ingresa un nodo a la lista
+     * @param dato el dato que contiene el nodo
+     * @param nombre el nombre del nodo
+     * @param nombre_atr el nombre del atributo del nodo
+     * @param tipo_atr el tipo del atributo del nodo
+     * @param llave_prim la llave primaria del nodo
+     * @param llave_fora la llave foranea del nodo
+     * @param nombre_atributo el nombre del atributo del nodo
+     */
     public void ingresarDato(Objetos dato, String nombre , String nombre_atr , String tipo_atr , String llave_prim , String llave_fora, String nombre_atributo) {
 
 
@@ -40,6 +54,10 @@ public class Documentos {
         }
         this.imprimir();
     }
+
+    /**
+     * metodo que enseña los nodos de la lista Documentos
+     */
     public void imprimir() {
 
         Nodo actual = inicio;
@@ -83,9 +101,7 @@ public class Documentos {
     }
     public void buscarDoc(Object dato) {
         Nodo actual = inicio.getSiguiente();
-//		if(inicio.getDato() == dato) {
-//			System.out.println("El dato fue encontrado:" + dato);
-//		}
+
         while(actual != inicio & actual.getDato() != dato) {
             actual = actual.getSiguiente();
         }
@@ -96,6 +112,12 @@ public class Documentos {
             System.out.println("El dato no fue encontrado");
         }
     }
+
+    /**
+     * Busca nodos dentro de la lista por el nombre
+     * @param nombre el nombre del nodo que se busca
+     * @return retonra el nodo que tiene como atributo ese nodo
+     */
 
     public Nodo buscar_por_nombre_Documentos(String nombre) {
         Nodo actual = inicio.getSiguiente();
@@ -120,14 +142,27 @@ public class Documentos {
         return null;
     }
 
+    /**
+     * metodo que da el nombre de la  lista
+     * @return nombre de la lista
+     */
+
     public String getNombre_lista() {
         return nombre_lista;
     }
 
+    /**
+     * metodo que da la llave primaria de la lista
+     * @return llave primaria
+     */
     public String getLlave_1() {
         return llave_1;
     }
 
+    /**
+     * metodo que da la llave foranea de la lista
+     * @return llave foranea
+     */
     public String getLlave_2() {
         return llave_2;
     }

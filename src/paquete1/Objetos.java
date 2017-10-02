@@ -1,17 +1,28 @@
 package paquete1;
 
-
 import org.json.simple.JSONObject;
+
+/**
+ * Clase que hace la lista de objetos
+ */
 
 public class Objetos {
     private Object dato;
     private Nodo fin;
     private Nodo inicio;
 
+    /**
+     * inicializa la lista de objetos
+     */
     public Objetos() {
         inicio =  null;
         fin = null;
     }
+
+    /**
+     * ingresa un dato (nodo) a la lista de objetos
+     * @param dato el dato que se quiere ingresar
+     */
     public void ingresarDato(JSONObject dato) {
         if (inicio == null) {
             inicio = new Nodo(null,null,null,dato,null,null,null, null, null, null, null ,null, null);
@@ -24,6 +35,11 @@ public class Objetos {
             fin = nuevo;
         }
     }
+
+    /**
+     * Elimina un nodo de la lista de objetos por llave
+     * @param llave la llave primaria del nodo a buscar
+     */
     public void eliminarObjeto(String llave) {
         System.out.println("El objeto buscado es: " + llave);
         Nodo actual = inicio;
@@ -55,25 +71,10 @@ public class Objetos {
 
         }
     }
-    public void buscarObj(Object dato) {
-        Nodo actual = inicio;
-        Nodo temporal = inicio.getSiguiente();
-        if (dato == inicio.getDato()){
-            System.out.println("El resultado fue encontrado:"+ dato);
-        }
-        else {
-            while(temporal != null && temporal.getDato() != dato) {
-                actual = actual.getSiguiente();
-                temporal = temporal.getSiguiente();
-            }
-            if (temporal != null) {
-                System.out.println("El dato fue encontrado:" +  dato);
-            }
-        }
-        if (temporal == null) {
-            System.out.println("No se encontro el dato :( ");
-        }
-    }
+
+    /**
+     * imprime todos los datos de la lista de objetos
+     */
     public void imprimirObjectos(){
         Nodo actual = inicio;
 
@@ -82,10 +83,19 @@ public class Objetos {
             actual = actual.getSiguiente();
         }
     }
+
+    /**
+     * da el nodo inicial de la lista de objetos
+     * @return el inicio de la lista
+     */
     public Nodo dar_inicio(){
         return this.inicio;
 
     }
+
+    /**
+     * elimina todos los objetos de la lista
+     */
     public void eliminar_todos_los_Objetos(){
         inicio = null;
         fin = null;

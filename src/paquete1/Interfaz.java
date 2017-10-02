@@ -1,128 +1,65 @@
 package paquete1;
 
-import apple.laf.JRSUIUtils;
-import com.sun.tools.classfile.Synthetic_attribute;
 import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.json.simple.JSONObject;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.scene.control.CheckBox;
 import java.io.File;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.*;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.Scene;
 import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.*;
-import javafx.*;
 import javafx.scene.control.*;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.VBox;
-import javafx.scene.control.TextField;
-import sun.swing.SwingUtilities2;
 import javafx.collections.FXCollections;
 import javafx.scene.Group;
-import javafx.scene.text.Font;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-
+/**
+ * Esta es la clase Interfaz que es la encargada de mostrar toda la intrfaz en su totalidad
+ */
 public class Interfaz extends Application {
     RadioButton circulo_requerido;
     RadioButton circulo_no_requerido;
-    private File file;
-    private ImageView imagenView;
-    private Image imagen;
     Stage ventana;
     BorderPane canvas1;
     Pane canvas2;
     TreeView<String> arbol;
     TreeItem<String> item, root, item2, item3;
-    StackPane paraArbol;
-    Boolean title;
-    Scene ponerNombreJSON;
+
     public String menu_botton_selected;
-    int cuenta = 1;
-    private boolean isRightClick;
+
 
 
 
     Store listasStore = new Store();
 
+    /**
+     * Este es el metodo main de la interfaz
+     * @param args
+     */
+
     public static void main(String[] args) {
         launch(args);
     }
 
-
-    @Override
-    public void start(Stage ventanaPrimaria) throws Exception {
-        // SE CREA LA VENTANA GRANDE//
-
-
-        ventana = ventanaPrimaria;
-        ventana.setTitle("Base de Datos");
-
-
-        // CREAR - PEDAZO/FILE - DE MENU //
-
-
-        Menu crear_store_JSON = new Menu("Crear..");
-        MenuItem opcion_crear_json = new MenuItem("JSON Store");
-        opcion_crear_json.setOnAction(e -> deplejarVentanaNombreJSON());
-        crear_store_JSON.getItems().add(opcion_crear_json);
-
-
-        Menu File = new Menu("File");
-        File.getItems().add(new MenuItem("Close"));
-
-
-        // SE CREA LA BARRA ENTERA DEL MENU//
-
-
-        MenuBar barra = new MenuBar();
-        barra.getMenus().addAll(crear_store_JSON);
-        barra.getMenus().addAll(File);
-        canvas1 = new BorderPane();
-        canvas1.setTop(barra);
-
-        root = new TreeItem<>("ROOT");
-        root.setExpanded(true);
-        arbol = new TreeView<>(root);
-        arbol.setShowRoot(false);
-
-        canvas1.setLeft(arbol);
-
-        //CREAR LA VENTANA PARA METER DATOS JSONSTORE//
-
-
-        Scene escena = new Scene(canvas1, 700, 600);
-        ventana.setScene(escena);
-        ventana.show();
-    }
-
-    //FUNCION A LA QUE VA EL EVENTO DE CREAR JSON //
-
-
-    public void crearElItem(String nombre) {
-        item = armarItemArbol(nombre);
-    }
-
-    // CREA UN ROOT/JSON STORE O CREA UN ELEMENTO NO ROOT //
-
+    /**
+     * Muestra la ventana debido a que se dejaron espacios en blanco cuando se creó el documento
+     */
     public static void display() {
 
         Stage window = new Stage();
@@ -149,14 +86,70 @@ public class Interfaz extends Application {
 
     }
 
-    public TreeItem<String> armarHijoArbol(TreeItem<String> padre, String nombre) {
-//        System.out.println("EL PADRE ES " + padre.getParent().getValue());
-//        System.out.println(padre.toString());
-//        System.out.println(padre.getParent().toString());
+    /**
+     * Este metodo muestra la primera ventana de la interfaz
+     * @param ventanaPrimaria
+     * @throws Exception
+     */
+    @Override
+    public void start(Stage ventanaPrimaria) throws Exception {
 
-//        Documentos documentos1 = new Documentos();
-//        Objetos objetojson = new Objetos();
-//        System.out.println(item2.getParent());
+
+
+        ventana = ventanaPrimaria;
+        ventana.setTitle("Base de Datos");
+
+
+
+
+        Menu crear_store_JSON = new Menu("Crear..");
+        MenuItem opcion_crear_json = new MenuItem("JSON Store");
+        opcion_crear_json.setOnAction(e -> deplejarVentanaNombreJSON());
+        crear_store_JSON.getItems().add(opcion_crear_json);
+
+
+        Menu File = new Menu("File");
+        File.getItems().add(new MenuItem("Close"));
+
+
+
+
+
+        MenuBar barra = new MenuBar();
+        barra.getMenus().addAll(crear_store_JSON);
+        barra.getMenus().addAll(File);
+        canvas1 = new BorderPane();
+        canvas1.setTop(barra);
+
+        root = new TreeItem<>("ROOT");
+        root.setExpanded(true);
+        arbol = new TreeView<>(root);
+        arbol.setShowRoot(false);
+
+        canvas1.setLeft(arbol);
+
+
+        Scene escena = new Scene(canvas1, 700, 600);
+        ventana.setScene(escena);
+        ventana.show();
+    }
+
+    /**
+     * Crea el item dentro del arbol de la interfaaz
+     * @param nombre
+     */
+    public void crearElItem(String nombre) {
+        item = armarItemArbol(nombre);
+    }
+
+    /**
+     * Crear en el arbol un item que esta dentro de otro
+     * @param padre
+     * @param nombre
+     * @return
+     */
+    public TreeItem<String> armarHijoArbol(TreeItem<String> padre, String nombre) {
+
 
 
         item3 = new TreeItem<>(nombre);
@@ -168,7 +161,13 @@ public class Interfaz extends Application {
         return item3;
     }
 
-    //  DOCUMENTO VENTANA ///
+
+
+    /**
+     * Es el encargado de crear los itemns de los stores y ademas le agrega los menus a los items
+     * @param nombre
+     * @return
+     */
 
     public TreeItem<String> armarItemArbol(String nombre) {
 
@@ -178,7 +177,7 @@ public class Interfaz extends Application {
 
         {
 
-            // instantiate the root context menu
+
 
             ContextMenu rootContextMenu = ContextMenuBuilder.create().items(
 
@@ -208,7 +207,7 @@ public class Interfaz extends Application {
                         @Override
                         public void handle(ActionEvent arg0) {
 
-//                            mostrar_objetos_en_memoria(arbol.getSelectionModel().selectedItemProperty().get(), arbol.getSelectionModel().selectedItemProperty().get());
+
                             Tabla(arbol.getSelectionModel().selectedItemProperty().get(),listasStore.buscar_por_nombre(arbol.getSelectionModel().selectedItemProperty().get().getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(arbol.getSelectionModel().selectedItemProperty().get().getValue()).getNombre(),listasStore.buscar_por_nombre(arbol.getSelectionModel().selectedItemProperty().get().getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(arbol.getSelectionModel().selectedItemProperty().get().getValue()).getLlave_primaria(), listasStore.buscar_por_nombre(arbol.getSelectionModel().selectedItemProperty().get().getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(arbol.getSelectionModel().selectedItemProperty().get().getValue()).getLlave_foranea(),listasStore.buscar_por_nombre(arbol.getSelectionModel().selectedItemProperty().get().getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(arbol.getSelectionModel().selectedItemProperty().get().getValue()).getNombre_del_atr());
 
                         }
@@ -262,6 +261,12 @@ public class Interfaz extends Application {
         return item2;
     }
 
+    /**
+     * Este metodo desplega la ventana para crear un documento dentro de un store
+     * @param padre_seleccionado este es el item seleccionado del arbol
+     * @param nivel este valor prevee que no se creen documentos a otros documentos
+     * @param item_seleccionado este es el item seleccionado del arbol
+     */
     public void desplejarVentana_Documento_desde_el_arbol(TreeItem<String> padre_seleccionado, int nivel, TreeItem<String> item_seleccionado) {
 
 
@@ -270,8 +275,6 @@ public class Interfaz extends Application {
         ventana_documento.initModality(Modality.APPLICATION_MODAL);
         ventana_documento.setTitle("Creando Documento...");
 
-
-        // imagenes de la ventana //
 
         File file3 = new File("/Users/IsaacPorras/Downloads/Progra1/src/paquete1/img/Nombre_documento_img.png");
         String localUrl1 = file3.toURI().toString();
@@ -288,8 +291,6 @@ public class Interfaz extends Application {
         imageView_documento.setLayoutY(150);
 
 
-        // Nombre del Documento  //
-
         Label Nombre_Atributo = new Label("Nombre del Documento:");
         Nombre_Atributo.setLayoutX(10);
         Nombre_Atributo.setLayoutY(200);
@@ -298,8 +299,6 @@ public class Interfaz extends Application {
         text_atributo_nombre.setLayoutX(170);
         text_atributo_nombre.setLayoutY(195);
         text_atributo_nombre.minWidth(60);
-
-        // Nombre del Documento  //
 
         Label Nombre_Atributo_real = new Label("Nombre del Atributo:");
         Nombre_Atributo_real.setLayoutX(10);
@@ -310,35 +309,25 @@ public class Interfaz extends Application {
         text_atributo_nombre_real.setLayoutY(295);
         text_atributo_nombre_real.minWidth(60);
 
-
-        //Tipo de atributo //
-
-
         Label Tipo_del_atributo = new Label("Tipo del Atributo:");
         Tipo_del_atributo.setLayoutX(15);
         Tipo_del_atributo.setLayoutY(250);
 
-        // Tipo Especial : Primaria y foranea //
-
-        //1.1.Primaria : Label
 
         Label tipo_especial_primaria = new Label("Llave Primaria :");
         tipo_especial_primaria.setLayoutX(20);
         tipo_especial_primaria.setLayoutY(330);
-        //1.2.Primaria : TextField
 
         TextField text_tipo_especial_primaria= new TextField();
         text_tipo_especial_primaria.setLayoutX(170);
         text_tipo_especial_primaria.setLayoutY(330);
         text_tipo_especial_primaria.minWidth(60);
 
-        //2.1.Foranea : Label
 
         Label tipo_especial_foranea = new Label("Llave Foranea :");
         tipo_especial_foranea.setLayoutX(20);
         tipo_especial_foranea.setLayoutY(360);
 
-        //2.2.Foranea : Textfield
 
         TextField text_tipo_especial_foranea = new TextField();
         text_tipo_especial_foranea.setLayoutX(170);
@@ -347,18 +336,12 @@ public class Interfaz extends Application {
         text_tipo_especial_foranea.setEditable(false);
 
 
-        // BOTONES DE REQUERIDO O NO REQUERIDO //
 
-
-        // 1. Requerido
 
         Label label_circulo_requerido = new Label("Requerido ");
         label_circulo_requerido.setLayoutX(10);
         label_circulo_requerido.setLayoutY(400);
 
-
-
-        // 2. No requerido
 
         Label label_circulo_no_requerido = new Label("No Requerido ");
         label_circulo_no_requerido.setLayoutX(10);
@@ -409,13 +392,6 @@ public class Interfaz extends Application {
 
 
 
-
-
-
-
-        // boton para mandar datos //
-
-
         Button boton_documento = new Button("Listo!");
         boton_documento.setLayoutX(250);
         boton_documento.setLayoutY(400);
@@ -442,8 +418,6 @@ public class Interfaz extends Application {
             }
         });
 
-        // Terminado y metiendo todos los elementos dentro de la ventana //
-
 
         Pane canvas3 = new Pane();
         canvas3.getChildren().addAll(text_atributo_nombre, Nombre_Atributo, Tipo_del_atributo, tipo_especial_primaria, text_tipo_especial_primaria);
@@ -454,10 +428,15 @@ public class Interfaz extends Application {
         ventana_documento.setScene(scene2);
         ventana_documento.showAndWait();
 
-        // Agarra los datos y crea el hijo //
 
     }
 
+    /**
+     * Este metodo es utilizado para meter en una lista los valores de la lista objetos con el fin de poder meterla en la tabla
+     * @param actual_1 es el nodo con el cual se va a recorrer la lista de objetos
+     * @param data  es la lista observable a la que se le meten los valores
+     * @param lista es la lista de documentos
+     */
 
     public void meter_valores_en_observable_list(Nodo actual_1, ObservableList<Tabla_datos> data , Documentos lista) {
 
@@ -468,6 +447,15 @@ public class Interfaz extends Application {
 
         }
     }
+
+    /**
+     * Este metodo muestra la ventana con la tabla con los objetos del documento seleccionado
+     * @param padre es el TreeItem
+     * @param nombre_tabla es el nombre de la tabla
+     * @param llave1 es la llave primaria del documento que se utiliza para meterlo en la columna
+     * @param llave2 es la llave foranea del documento que se utiliza para meterlo en la columna
+     * @param nombre_del_atributo es el nombre del atributo que tiene el documento
+     */
 
     public void Tabla(TreeItem<String> padre, String nombre_tabla, String llave1, String llave2, String nombre_del_atributo) {
 
@@ -528,6 +516,10 @@ public class Interfaz extends Application {
         stage.show();
     }
 
+    /**
+     * Este metodo muestra la ventana que es utilizada para poder darle el nombre al store
+     */
+
     public void deplejarVentanaNombreJSON() {
 
 
@@ -576,6 +568,17 @@ public class Interfaz extends Application {
 
     }
 
+    /**
+     * Este metodo mete los atributos seleccionados en el nodo creado
+     * @param padre señala el Treeitem al que se le deben meter los atributos
+     * @param nombre_doc señala el nombre que se escogió para el documento
+     * @param nivel señala el nivel en el que se desea meter el documento
+     * @param seleccionado señala el treeitem en especial que se seleccionó
+     * @param tipo_del_atributo señala si es entero, flotante, cadena o fecha
+     * @param llave_primaria tiene la llave primaria del documento
+     * @param llave_foranea tiene la llave foranea del documento
+     * @param nombre_del_atributo tiene el nombre del atributo del documento
+     */
     public void meter_en_documentos(TreeItem<String> padre, String nombre_doc, int nivel, String seleccionado, String tipo_del_atributo, String llave_primaria, String llave_foranea, String nombre_del_atributo) {
 
 
@@ -627,10 +630,11 @@ public class Interfaz extends Application {
             }
 
         }
-
-
     }
 
+    /**
+     * este metodo muestra la ventana por la cual se meten para eliminar un objeto json por llave
+     */
     public void eliminar_json_por_llave() {
 
         Stage window = new Stage();
@@ -666,15 +670,7 @@ public class Interfaz extends Application {
         window.showAndWait();
     }
 
-    //    public void mostrar_objetos_en_memoria(TreeItem<String> padre, TreeItem<String> seleccionado){
-//
-//        System.out.println("-------------------------------");
-//
-//        System.out.println("LOS OBJETOS EN MEMORIA SON: ");
-//        System.out.println("  ");
-//
-//        listasStore.buscar_por_nombre(padre.getParent().getValue()).getDato_Store().buscar_por_nombre_Documentos(seleccionado.getValue()).getDato_Documento().imprimirObjectos();
-//    }
+
 
     public void display_no_es_tipo() {
 
@@ -702,8 +698,12 @@ public class Interfaz extends Application {
         window_no_es_tipo.setScene(scene_no_es_tipo);
 
         window_no_es_tipo.showAndWait();
-
     }
+
+    /**
+     * Crea el JSON object por medio de la ventana que muestra
+     * @param seleccionado tiene el documento seleccionado
+     */
     public void Ventana_crear_JSON_Object(TreeItem<String> seleccionado){
 
 
@@ -849,8 +849,14 @@ public class Interfaz extends Application {
         Scene scene2 = new Scene(canvas_json, 320, 200);
         ventana_json_object.setScene(scene2);
         ventana_json_object.showAndWait();
-
     }
+
+    /**
+     * verifica que el tipo de dato ingresado al crear el objeto JSON coincide con el establecido del documento
+     * @param dato el de dato ingresado
+     * @return retorna el tipo de dato que se ingresó
+     */
+
     public String verificar_que_tipo(String dato){
         if (numerico(dato).equals("int")){
             return "int";
@@ -866,6 +872,12 @@ public class Interfaz extends Application {
         }
         return "NINGUNO";
     }
+
+    /**
+     * Metodo que verifica si es numerico el dato ingresado
+     * @param numero el numero ingresado
+     * @return retorna si es numerico o no
+     */
 
     public String numerico(String numero){
         if(numero.contains(".")) {
@@ -899,8 +911,16 @@ public class Interfaz extends Application {
         else{
             return false;
         }
-
     }
+
+    /**
+     * Muestra la ventana con la cual se enseñan los valores que se encontraron al buscar
+     * @param actual_1 nodo con el que se recorre la lista
+     * @param data la lista observable
+     * @param lista la lista de documentos que se recorre
+     * @param atributo_buscado el atributo que se busca en los nodos recorridos
+     * @param seleccionado no se usa
+     */
     public void meter_valores_en_lista_buscar(Nodo actual_1, ObservableList<Tabla_datos> data , Documentos lista, String atributo_buscado, String seleccionado) {
 
         while (actual_1 != null) {
@@ -916,6 +936,15 @@ public class Interfaz extends Application {
 
         }
     }
+
+    /**
+     * Muestra la tabla con los datos buscados
+     * @param padre muestra el treeitem seleccionado
+     * @param nombre_tabla es el nombre del documento seleccionado
+     * @param llave1 es la llave primaria del documento
+     * @param llave2 es la llave fornea del documento
+     * @param atributo_buscado es el atributo que se busca
+     */
 
     public void Tabla_buscar(TreeItem<String> padre, String nombre_tabla, String llave1, String llave2, String atributo_buscado) {
 
@@ -976,6 +1005,10 @@ public class Interfaz extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * Metodo que muestra una ventana para ingresar el dato a buscar
+     */
     public void buscar_objeto() {
 
         Stage window = new Stage();
@@ -1011,6 +1044,12 @@ public class Interfaz extends Application {
         window.showAndWait();
     }
 
+    /**
+     * actualiza los objetos de la lista seleccionados
+     * @param lista la lista que se seleccionó
+     * @param atributo_a_actualizar el atributo que se desea actualizar
+     * @param condicion es la condicion de busqueda
+     */
     public void actualizar_objetos(Objetos lista , String atributo_a_actualizar, String condicion){
         Stage window = new Stage();
 
