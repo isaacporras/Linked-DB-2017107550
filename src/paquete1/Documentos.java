@@ -56,7 +56,7 @@ public class Documentos {
     }
 
     /**
-     * metodo que enseña los nodos de la lista Documentos
+     * metodo que ensena los nodos de la lista Documentos
      */
     public void imprimir() {
 

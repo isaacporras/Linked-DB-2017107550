@@ -58,7 +58,7 @@ public class Interfaz extends Application {
     }
 
     /**
-     * Muestra la ventana debido a que se dejaron espacios en blanco cuando se creó el documento
+     * Muestra la ventana debido a que se dejaron espacios en blanco cuando se creo el documento
      */
     public static void display() {
 
@@ -570,11 +570,11 @@ public class Interfaz extends Application {
 
     /**
      * Este metodo mete los atributos seleccionados en el nodo creado
-     * @param padre señala el Treeitem al que se le deben meter los atributos
-     * @param nombre_doc señala el nombre que se escogió para el documento
-     * @param nivel señala el nivel en el que se desea meter el documento
-     * @param seleccionado señala el treeitem en especial que se seleccionó
-     * @param tipo_del_atributo señala si es entero, flotante, cadena o fecha
+     * @param padre senala el Treeitem al que se le deben meter los atributos
+     * @param nombre_doc senala el nombre que se escogio para el documento
+     * @param nivel senala el nivel en el que se desea meter el documento
+     * @param seleccionado senala el treeitem en especial que se selecciono
+     * @param tipo_del_atributo senala si es entero, flotante, cadena o fecha
      * @param llave_primaria tiene la llave primaria del documento
      * @param llave_foranea tiene la llave foranea del documento
      * @param nombre_del_atributo tiene el nombre del atributo del documento
@@ -854,7 +854,7 @@ public class Interfaz extends Application {
     /**
      * verifica que el tipo de dato ingresado al crear el objeto JSON coincide con el establecido del documento
      * @param dato el de dato ingresado
-     * @return retorna el tipo de dato que se ingresó
+     * @return retorna el tipo de dato que se ingreso
      */
 
     public String verificar_que_tipo(String dato){
@@ -914,7 +914,7 @@ public class Interfaz extends Application {
     }
 
     /**
-     * Muestra la ventana con la cual se enseñan los valores que se encontraron al buscar
+     * Muestra la ventana con la cual se ensenan los valores que se encontraron al buscar
      * @param actual_1 nodo con el que se recorre la lista
      * @param data la lista observable
      * @param lista la lista de documentos que se recorre
@@ -1046,7 +1046,7 @@ public class Interfaz extends Application {
 
     /**
      * actualiza los objetos de la lista seleccionados
-     * @param lista la lista que se seleccionó
+     * @param lista la lista que se selecciono
      * @param atributo_a_actualizar el atributo que se desea actualizar
      * @param condicion es la condicion de busqueda
      */
@@ -1066,7 +1066,7 @@ public class Interfaz extends Application {
         label_nuevo_atributo.setLayoutX(20);
 
         Label label_condicion = new Label();
-        label_condicion.setText("Digite la condición de busqueda:");
+        label_condicion.setText("Digite la condicion de busqueda:");
         label_condicion.setLayoutY(60);
         label_condicion.setLayoutX(20);
 

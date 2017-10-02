@@ -43,11 +43,11 @@ public class Objetos {
     public void eliminarObjeto(String llave) {
         System.out.println("El objeto buscado es: " + llave);
         Nodo actual = inicio;
-        Nodo temporal = inicio.getSiguiente();
+        Nodo temporal = inicio;
         System.out.println("--------------------");
         System.out.println("El dato del primer nodo es: " + actual.getDato_JSON().get("Llave: ").toString());
 
-        if (inicio == fin &&  llave.equals(inicio.getDato_JSON().get("Llave: ").toString()) || inicio == fin && llave.equals(inicio.getDato_JSON().get("Tipo").toString())){
+        if (inicio == fin && llave.equals(inicio.getDato_JSON().get("Llave: ").toString()) || inicio == fin && llave.equals(inicio.getDato_JSON().get("Tipo").toString())) {
             inicio = fin = null;
             System.out.println("El objeto fue eliminado");
             return;
@@ -55,22 +55,21 @@ public class Objetos {
         if (llave.equals(inicio.getDato_JSON().get("Llave: ").toString()) || llave.equals(inicio.getDato_JSON().get("Tipo").toString())) {
             inicio = inicio.getSiguiente();
             System.out.println("El objeto fue eliminado");
-        }
-        else {
-            while(temporal != null ) {
+        } else {
 
-                if (temporal.getDato_JSON().get("Llave: ").toString().equals(llave) || temporal.getDato_JSON().get("Tipo").toString().equals(llave)){
+            while (temporal != null) {
+
+                if (temporal.getDato_JSON().get("Llave: ").toString().equals(llave) || temporal.getDato_JSON().get("Tipo").toString().equals(llave)) {
 
                     actual.setSiguiente(temporal.getSiguiente());
                     temporal = null;
-                }
-                else{
+                } else {
                     temporal = temporal.getSiguiente();
                 }
             }
-
         }
     }
+
 
     /**
      * imprime todos los datos de la lista de objetos
